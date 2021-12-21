@@ -474,8 +474,16 @@ curl --location --request GET 'https://pwl.icu/notifications/all-read?apiKey=oXT
 |userNickname | msg | 昵称 | 陈辉 |
 |userAvatarURL | msg | 用户头像 | https://... |
 |sysMetal|msg | 徽章列表, JSON 字符串| `{ "list": [ { "data": "", "name": "", "description": "", "attr": "url=https://...&backcolor=xxxxxx&fontcolor=xxxxxx"} ]}` |
-|content|msg|消息内容，HTML 格式，如果是红包，则是 JSON|`<p>+1</p>` 或<br> `{"msg":"...","recivers":"[ ... ]","senderId":"","msgType":"redPacket","money":32,"count":1,"type":"specify","got":0,"who":[]}` |
-|md|msg|消息内容，Markdown 格式|`![image.png](https://pwl.stackoverflow.wiki/2021/12/image-34bf1576.png)`
+|content|消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{...}` |
+|- msg|红包祝福语|摸鱼者，事竟成！|
+|- recivers|红包接收者用户名，专属红包有效|[ ... ]
+|- msgType|固定 redPacket | redPacket
+|- money|红包积分|32|
+|- count|红包个数|2|
+|- type|红包类型|random|
+|- got|已领取个数|1|
+|- who|已领取者信息| |
+|md|msg|消息内容，Markdown 格式，红包消息无此栏位|`![image.png](https://...)`
 |撤回消息|
 |oId|revoke|撤回消息的 Id|1640076642484|
 | 红包领取消息 |
@@ -513,7 +521,16 @@ curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1q
 |- userNickname | 昵称 | 陈辉 |
 |- userAvatarURL  | 用户头像 | https://... |
 |- sysMetal | 徽章列表, JSON 字符串| `{ "list": [ { "data": "", "name": "", "description": "", "attr": "url=https://...&backcolor=xxxxxx&fontcolor=xxxxxx"} ]}` |
-|- content|消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{"msg":"...","recivers":"[ ... ]","senderId":"",\"msgType":"redPacket","money":32,"count":1,"type":"specify","got":0,"who":[]}` |
+|- content|消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{...}` |
+|-- msg|红包祝福语|摸鱼者，事竟成！|
+|-- recivers|红包接收者用户名，专属红包有效|[ ... ]
+|-- msgType|固定 redPacket | redPacket
+|-- money|红包积分|32|
+|-- count|红包个数|2|
+|-- type|红包类型|random|
+|-- got|已领取个数|1|
+|-- who|已领取者信息| |
+
 
 ### 发送消息
 `POST /chat-room/send`
