@@ -54,6 +54,7 @@ curl --location --request POST 'https://pwl.icu/api/getKey' \
 请求示例：
 ```bash
 curl --location --request GET 'https://pwl.icu/api/user?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) 
 ```
 
 响应：
