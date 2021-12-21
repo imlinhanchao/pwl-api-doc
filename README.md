@@ -474,15 +474,19 @@ curl --location --request GET 'https://pwl.icu/notifications/all-read?apiKey=oXT
 |userNickname | msg | 昵称 | 陈辉 |
 |userAvatarURL | msg | 用户头像 | https://... |
 |sysMetal|msg | 徽章列表, JSON 字符串| `{ "list": [ { "data": "", "name": "", "description": "", "attr": "url=https://...&backcolor=xxxxxx&fontcolor=xxxxxx"} ]}` |
-|content|消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{...}` |
-|- msg|红包祝福语|摸鱼者，事竟成！|
-|- recivers|红包接收者用户名，专属红包有效|[ ... ]
-|- msgType|固定 redPacket | redPacket
-|- money|红包积分|32|
-|- count|红包个数|2|
-|- type|红包类型|random|
-|- got|已领取个数|1|
-|- who|已领取者信息| |
+|content|msg |消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{...}` |
+|- msg|msg - redPacket|红包祝福语|摸鱼者，事竟成！|
+|- recivers|msg - redPacket|红包接收者用户名，专属红包有效|[ ... ]
+|- msgType|msg - redPacket|固定 redPacket | redPacket
+|- money|msg - redPacket|红包积分|32|
+|- count|msg - redPacket|红包个数|2|
+|- type|msg - redPacket|红包类型|random|
+|- got|msg - redPacket|已领取个数|1|
+|- who|msg - redPacket|已领取者信息| `[ ... ]` |
+| -- userName|msg - redPacket|用户名|dannio|
+| -- avatar|msg - redPacket|用户头像|https://...|
+| -- userMoney - redPacket|msg|领取到的积分|23|
+| -- time|msg - redPacket|领取时间|2021-12-21 16:26:43|
 |md|msg|消息内容，Markdown 格式，红包消息无此栏位|`![image.png](https://...)`
 |撤回消息|
 |oId|revoke|撤回消息的 Id|1640076642484|
@@ -529,7 +533,12 @@ curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1q
 |-- count|红包个数|2|
 |-- type|红包类型|random|
 |-- got|已领取个数|1|
-|-- who|已领取者信息| |
+|-- who|已领取者信息| `[ ... ]` |
+| --- userName|用户名|dannio|
+| --- avatar|用户头像|https://...|
+| --- userMoney|领取到的积分|23|
+| --- time|领取时间|2021-12-21 16:26:43|
+
 
 
 ### 发送消息
