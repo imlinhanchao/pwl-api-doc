@@ -116,7 +116,7 @@ curl --location --request GET 'https://pwl.icu/user/taozhiyu?apiKey=oXTQTD4ljryX
 |onlineMinute| 在线时长，单位分钟|85467|
 |userPoint|积分|183939|
 |canFollow|是否可以关注|no/yes/hide|
-|userAppRole|角色|0 = 黑客，1 = 画家|
+|userAppRole|角色，0 = 黑客，1 = 画家|1|
 |userIntro| 签名|人生而自由，卻無往不在枷鎖之中。|
 |userURL | URL | https://... |
 |cardBg| 卡片背景| https://...|
