@@ -528,7 +528,7 @@ curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1q
 | - msg| 红包祝福语 |摸鱼者，事竟成！|
 | - money| 红包包含积分，如果是平分红包，则是单个红包积分| 32 |
 | - count|红包个数| 2 |
-| - recivers|接收者用户名，专属红包有效| `[ ... ]` | 
+| - recivers|接收者用户名列表，专属红包有效| `[ ... ]` | 
 | - type|红包类型，random(拼手气红包), average(平分红包)，specify(专属红包)，heartbeat(心跳红包)|random|
 
 > <sup>*</sup> 如果是发送红包，则需要发送 `[redpacket]{...}[/redpacket]`的格式
@@ -601,7 +601,7 @@ curl --location --request POST 'https://pwl.icu/chat-room/red-packet/open' \
 响应：
 | Key | 说明 | 示例 |
 | --- | --- | --- |
-|recivers|红包接收者，专属红包有效|`[ ... ]`|
+|recivers|红包接收者用户名列表，专属红包有效|`[ ... ]`|
 |who|已打开红包的用户|`[ ... ]`|
 | - userName|用户名|dannio|
 | - avatar|用户头像|https://...|
