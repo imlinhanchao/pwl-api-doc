@@ -25,7 +25,7 @@
 请求示例：
 ```bash
 curl --location --request POST 'https://pwl.icu/api/getKey' \
---header 'Content-Type: application/json' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --data-raw '{
     "nameOrEmail": "username",
     "userPassword": "e10adc3949ba59abbe56e057f20f883e"
@@ -54,7 +54,7 @@ curl --location --request POST 'https://pwl.icu/api/getKey' \
 请求示例：
 ```bash
 curl --location --request GET 'https://pwl.icu/api/user?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'
---header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) 
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 ```
 
 响应：
@@ -100,7 +100,7 @@ curl --location --request GET 'https://pwl.icu/api/user?apiKey=oXTQTD4ljryXoIxa1
 请求示例：
 ```bash
 curl --location --request GET 'https://pwl.icu/user/taozhiyu?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'\
---header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) 
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 ```
 
 响应：
