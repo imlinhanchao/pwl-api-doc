@@ -5,7 +5,7 @@
 - 对单个接口的访问频率必须控制在最低1次/30秒，否则IP可能进入小黑屋（WebSocket、发送消息接口除外）
 
 ## 鉴权
-摸鱼派社区 API 引入了  `apiKey` 的概念，对 API 的请求不需要提供 Cookie，只需要在参数中带上申请的 `apiKey` 即可。
+摸鱼派社区 API 引入了 `apiKey` 的概念，对 API 的请求不需要提供 Cookie，只需要在参数中带上申请的 `apiKey` 即可。
 
 > 注意：凡是 POST 请求，请求体必须是 JSON 格式，例如：`{ "nameOrEmail": "","userPassword": "" }`
 
@@ -78,7 +78,12 @@ curl --location --request GET 'https://pwl.icu/api/user?apiKey=oXTQTD4ljryXoIxa1
 |- userURL | URL | https://... |
 |- cardBg| 卡片背景| https://...|
 |- followingUserCount|关注用户|5|
-|- sysMetal| 徽章列表, JSON 字符串| `{ "list": [ { "data": "", "name": "", "description": "", "attr": "url=https://...&backcolor=xxxxxx&fontcolor=xxxxxx"} ]}` |
+|- sysMetal| 徽章列表, JSON **字符串**| `{ ... }` |
+|-- list | 徽章列表数据 | `[ ... ]` |
+|--- attr | 徽章数据，包含徽章图地址 `url`, 背景色 `backcolor`, 前景色 `fontcolor` | url=https://...&<br>backcolor=b91c22&<br>fontcolor=ffffff |
+|--- name | 徽章名称 | Operator |
+|--- description | 徽章描述 | 摸鱼派官方开发组成员|
+|--- data | 徽章数据 | 无 |
 
 ><sup>*</sup> 注意：若密钥无效，无 `data` 项目
 
@@ -122,7 +127,12 @@ curl --location --request GET 'https://pwl.icu/user/taozhiyu?apiKey=oXTQTD4ljryX
 |userURL | URL | https://... |
 |cardBg| 卡片背景| https://...|
 |followingUserCount|关注用户|5|
-|sysMetal| 徽章列表, JSON 字符串| `{ "list": [ { "data": "", "name": "", "description": "", "attr": "url=https://...&backcolor=xxxxxx&fontcolor=xxxxxx"} ]}` |
+|sysMetal| 徽章列表, JSON **字符串**| `{ ... }` |
+|- list | 徽章列表数据 | `[ ... ]` |
+|-- attr | 徽章数据，包含徽章图地址 `url`, 背景色 `backcolor`, 前景色 `fontcolor` | url=https://...&<br>backcolor=b91c22&<br>fontcolor=ffffff |
+|-- name | 徽章名称 | Operator |
+|-- description | 徽章描述 | 摸鱼派官方开发组成员|
+|-- data | 徽章数据 | 无 |
 
 ### 用户名联想
 `POST /users/names`
@@ -343,7 +353,7 @@ curl --location --request GET 'https://pwl.icu/api/getNotifications?apiKey=oXTQT
 |data|通知数据列表|`[ ... ]`|
 |- hasRead|是否已读|true,
 |- commentAuthorName|回帖作者|Tocker",
-|- commentAuthorThumbnailURL|回帖作者头像缩略图|https://pwl.stackoverflow.wiki/2021/12/blob-edc19d3f.png?imageView2/1/w/48/h/48/interlace/0/q/100",
+|- commentAuthorThumbnailURL|回帖作者头像缩略图|https://...,
 |- commentCreateTime|回帖时间|Sun Dec 19 09:57:03 CST 2021",
 |- commentSharpURL|回帖地址|/article/1637143985245?p=1&m=1#1639879022994",
 |- commentContent|回帖内容，内容为 HTML|`<p>牛蛙牛蛙</p>`",
@@ -379,7 +389,7 @@ curl --location --request GET 'https://pwl.icu/api/getNotifications?apiKey=oXTQT
 |- createTime|创建时间|Fri Dec 17 13:35:58 CST 2021|
 |- authorName|文章作者|adlered|
 |- articlePerfect|是否精选文章|0|
-|- thumbnailURL|作者头像缩略图|https://pwl.stackoverflow.wiki/2021/09/1552202503861_1562141298909-67b099fd.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100|
+|- thumbnailURL|作者头像缩略图|https://...|
 |- articleCommentCount|文章评论数|17|
 
 系统(sys-announce)通知响应：
@@ -473,7 +483,12 @@ curl --location --request GET 'https://pwl.icu/notifications/all-read?apiKey=oXT
 |userName | msg | 用户名 | adlered |
 |userNickname | msg | 昵称 | 陈辉 |
 |userAvatarURL | msg | 用户头像 | https://... |
-|sysMetal|msg | 徽章列表, JSON 字符串| `{ "list": [ { "data": "", "name": "", "description": "", "attr": "url=https://...&backcolor=xxxxxx&fontcolor=xxxxxx"} ]}` |
+|sysMetal| msg |徽章列表, JSON **字符串**| `{ ... }` |
+|- list | msg - sysMetal | 徽章列表数据 | `[ ... ]` |
+|-- attr | msg - sysMetal | 徽章数据，包含徽章图地址 `url`, 背景色 `backcolor`, 前景色 `fontcolor` | url=https://...&<br>backcolor=b91c22&<br>fontcolor=ffffff |
+|-- name | msg - sysMetal | msg | 徽章名称 | Operator |
+|-- description - sysMetal | 徽章描述 | 摸鱼派官方开发组成员|
+|-- data | msg - sysMetal | 徽章数据 | 无 |
 |content|msg |消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{...}` |
 |- msg|msg - redPacket|红包祝福语|摸鱼者，事竟成！|
 |- recivers|msg - redPacket|红包接收者用户名，专属红包有效|[ ... ]
@@ -524,7 +539,12 @@ curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1q
 |- userName  | 用户名 | adlered |
 |- userNickname | 昵称 | 陈辉 |
 |- userAvatarURL  | 用户头像 | https://... |
-|- sysMetal | 徽章列表, JSON 字符串| `{ "list": [ { "data": "", "name": "", "description": "", "attr": "url=https://...&backcolor=xxxxxx&fontcolor=xxxxxx"} ]}` |
+|- sysMetal| 徽章列表, JSON **字符串**| `{ ... }` |
+|-- list | 徽章列表数据 | `[ ... ]` |
+|--- attr | 徽章数据，包含徽章图地址 `url`, 背景色 `backcolor`, 前景色 `fontcolor` | url=https://...&<br>backcolor=b91c22&<br>fontcolor=ffffff |
+|--- name | 徽章名称 | Operator |
+|--- description | 徽章描述 | 摸鱼派官方开发组成员|
+|--- data | 徽章数据 | 无 |
 |- content|消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{...}` |
 |-- msg|红包祝福语|摸鱼者，事竟成！|
 |-- recivers|红包接收者用户名，专属红包有效|[ ... ]
@@ -539,8 +559,6 @@ curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1q
 | --- userMoney|领取到的积分|23|
 | --- time|领取时间|2021-12-21 16:26:43|
 
-
-
 ### 发送消息
 `POST /chat-room/send`
 
@@ -550,7 +568,7 @@ curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1q
 | Key | 说明 | 示例 |
 | --- | --- | --- |
 |apiKey|通用密钥|oXTQTD4ljryXoIxa1lySgEl6aObrIhSS|
-|content|消息正文（支持Markdown格式）。| ... 或 `[redpacket]{...}[/redpacket]`<sup>*</sup> |
+|content|消息正文（支持Markdown格式）。| `...` 或 `[redpacket]{...}[/redpacket]`<sup>*</sup> |
 | - msg| 红包祝福语 |摸鱼者，事竟成！|
 | - money| 红包包含积分，如果是平分红包，则是单个红包积分| 32 |
 | - count|红包个数| 2 |
@@ -602,6 +620,29 @@ curl --location --request DELETE 'https://pwl.icu/chat-room/revoke/1640078407444
 |code|为 0 则密钥有效，为 -1 则密钥无效|0|
 |msg|错误消息|撤回成功。|
 
+### 获取消息 Markdown
+`GET /cr/raw/<oId>`
+
+查看聊天室消息的 Markdown 原文，引用时使用。
+
+请求：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|oId|消息 Id| 1641290717190 |
+
+请求示例：
+```bash
+curl --location --request GET 'https://pwl.icu/cr/raw/1641290717190' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+```
+
+响应示例：
+```markdown
+:trollface:
+
+<!-- Generated by Rhythm (https://github.com/csfwff/rhythm) in 1ms, 2022/01/04 18:07:36 -->
+```
+
 ### 打开红包
 `POST /chat-room/red-packet/open`
 
@@ -640,22 +681,99 @@ curl --location --request POST 'https://pwl.icu/chat-room/red-packet/open' \
 | - count|红包个数|2|
 | - got|已领取个数|2|
 
+### 获取表情包
+`POST /api/cloud/get`
+
+从云获取指定 Key 内容，这里用于获取用户表情包
+
+请求：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|apiKey|通用密钥|oXTQTD4ljryXoIxa1lySgEl6aObrIhSS|
+|gameId|数据 Id| emojis |
+
+请求示例：
+```bash
+curl --location --request POST 'https://pwl.icu/api/cloud/get' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+    "gameId":"emojis"
+}'
+```
+
+响应：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|code|为 0 则密钥有效，为 -1 则密钥无效|0|
+|data|数据字符串，表情包内容为表情地址列表 JSON 字符串 |`["url1", "url2"]`|
+
+### 同步表情包
+`POST /api/cloud/sync`
+
+同步指定 Key 数据到云，这里用于同步用户表情包
+
+请求：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|apiKey|通用密钥|oXTQTD4ljryXoIxa1lySgEl6aObrIhSS|
+|gameId|数据 Id| emojis |
+|data<sup>*<sup>|数据字符串，表情包内容为表情地址列表 JSON 字符串 |`["url1", "url2"]`|
+
+>*此处数据需确保符合格式，否则会影响其他客户端正常解析数据。 
+
+请求示例：
+```bash
+curl --location --request POST 'https://pwl.icu/api/cloud/get' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+    "gameId":"emojis",
+    "data": "[\"url1\", \"url2\"]"
+}'
+```
+
+响应：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|code|为 0 则密钥有效，为 -1 则密钥无效|0|
+|msg|错误消息||
+
 ## 图床
 
 ### 上传图片
 `POST /upload`
 
 上传图片或文件
-> 限制大小：5M，  
-> 限制文件格式：zip,rar,7z,tar,gzip,bz2,jar,jpg,jpeg,png,gif,webp,webm,bmp,mp3,mp4,wav,mov,weba  
-> 指定MIME类型：multipart/form-data  
+
+#### 限制
+- **大小**：<=5M，  
+- **文件格式**：zip, rar, 7z, tar, gzip, bz2, jar, jpg, jpeg,png, gif, webp, webm, bmp, mp3, mp4, wav, mov, weba  
+- **请求类型**：multipart/form-data  
 
 请求：
 | Key | 说明 | 示例 |
 | --- | --- | --- |
 |file[]|文件||
 
+请求示例：
+```bash
+curl --location --request POST 'https://pwl.icu/upload' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+--form 'file[]=@"/C:/your/file/full/path.jpg"'
+```
 
+响应：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|code|为 0 则密钥有效，为 -1 则密钥无效|0|
+|msg|错误消息||
+|data|上传结果| `{ ... }` |
+|- errFiles| 上传失败的文件名列表 | `[ '文件名.jpg' ]`
+|- succMap | 上传成功的文件信息 | `{ ... }` | 
+|-- `<文件名>` | 文件地址 | https://...
 
 ## 帖子
 
