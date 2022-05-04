@@ -21,14 +21,16 @@
 | --- | --- | --- |
 |nameOrEmail|用户名或邮箱地址| username |
 |userPassword|使用 MD5 加密后的密码 <sup>*</sup>| e10adc3949ba59abbe56e057f20f883e |
+|mfaCode|两步认证一次性密码（如未设置留空）|123456|
 
 请求示例：
 ```bash
-curl --location --request POST 'https://pwl.icu/api/getKey' \
+curl --location --request POST 'https://fishpi.cn/api/getKey' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --data-raw '{
     "nameOrEmail": "username",
-    "userPassword": "e10adc3949ba59abbe56e057f20f883e"
+    "userPassword": "e10adc3949ba59abbe56e057f20f883e",
+    "mfaCode": "123456"
 }'
 ```
 
@@ -53,7 +55,7 @@ curl --location --request POST 'https://pwl.icu/api/getKey' \
 
 请求示例：
 ```bash
-curl --location --request GET 'https://pwl.icu/api/user?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'
+curl --location --request GET 'https://fishpi.cn/api/user?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 ```
 
@@ -104,7 +106,7 @@ curl --location --request GET 'https://pwl.icu/api/user?apiKey=oXTQTD4ljryXoIxa1
 
 请求示例：
 ```bash
-curl --location --request GET 'https://pwl.icu/user/taozhiyu?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'\
+curl --location --request GET 'https://fishpi.cn/user/taozhiyu?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'\
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 ```
 
@@ -146,7 +148,7 @@ curl --location --request GET 'https://pwl.icu/user/taozhiyu?apiKey=oXTQTD4ljryX
 
 请求示例：
 ```bash
-curl --location --request POST 'https://pwl.icu/users/names' \
+curl --location --request POST 'https://fishpi.cn/users/names' \
 --header 'Content-Type: application/json' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --data-raw '{
@@ -175,7 +177,7 @@ curl --location --request POST 'https://pwl.icu/users/names' \
 
 请求示例：
 ```bash
-curl --location --request GET 'https://pwl.icu/users/emotions?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/users/emotions?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -192,7 +194,7 @@ curl --location --request GET 'https://pwl.icu/users/emotions?apiKey=oXTQTD4ljry
 
 获取用户活跃度
 > **警告⚠️**:
-> 本接口负载较大，请至少将请求间隔延长至30秒，建议每次循环取(30,60]秒的随机数，如间隔小于30秒，登录状态会被直接注销！
+> 本接口负载较大，请至少将请求间隔延长至30秒，建议每次循环取 (30,60] 秒的随机数，如间隔小于30秒，登录状态会被直接注销！
 
 请求：
 | Key | 说明 | 示例 |
@@ -201,7 +203,7 @@ curl --location --request GET 'https://pwl.icu/users/emotions?apiKey=oXTQTD4ljry
 
 请求示例：
 ```bash
-curl --location --request GET 'https://pwl.icu/user/liveness?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/user/liveness?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -222,7 +224,7 @@ curl --location --request GET 'https://pwl.icu/user/liveness?apiKey=oXTQTD4ljryX
 
 请求示例:
 ```bash
-curl --location --request GET 'https://pwl.icu/user/checkedIn?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/user/checkedIn?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -243,7 +245,7 @@ curl --location --request GET 'https://pwl.icu/user/checkedIn?apiKey=oXTQTD4ljry
 
 请求示例:
 ```bash
-curl --location --request GET 'https://pwl.icu/activity/yesterday-liveness-reward-api?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/activity/yesterday-liveness-reward-api?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -264,7 +266,7 @@ curl --location --request GET 'https://pwl.icu/activity/yesterday-liveness-rewar
 
 请求示例:
 ```bash
-curl --location --request GET 'https://pwl.icu/api/activity/is-collected-liveness?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/api/activity/is-collected-liveness?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -272,6 +274,45 @@ curl --location --request GET 'https://pwl.icu/api/activity/is-collected-livenes
 | Key | 说明 | 示例 |
 | --- | --- | --- |
 |isCollectedYesterdayLivenessReward|true 表示已领取|true|
+
+### 举报
+
+`POST /report`
+
+举报内容接口
+
+请求：
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+--------------------------------------------------------------------------------------------------- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| reportDataId | 举报 Id | 1651126540998 |
+| reportDataType | 举报数据类型 | 0:文章,1:评论,2:用户,3:聊天消息 |
+| reportType | 举报类型 | 0:垃圾广告,1: H,2:违规,3:侵权,4:人身攻击,5:冒充他人账号,6:垃圾广告账号,7:违规泄露个人信息,49:其他 |
+| reportMemo | 举报理由 | 该用户涉嫌发送违规内容 |
+
+请求示例：
+
+```bash
+curl --location --request POST 'https://fishpi.cn/report' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "apiKey": "oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+    "reportDataId":"1651126540998",
+    "reportDataType":3,
+    "reportType":49,
+    "reportMemo":""，
+}'
+```
+
+响应：
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| code | 为 0 则密钥有效，为 -1 则密钥无效 | 0 |
+| msg | 错误消息 | |
 
 ## 通知
 
@@ -287,7 +328,7 @@ curl --location --request GET 'https://pwl.icu/api/activity/is-collected-livenes
 
 请求示例:
 ```bash
-curl --location --request GET 'https://pwl.icu/notifications/unread/count?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/notifications/unread/count?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -331,7 +372,7 @@ curl --location --request GET 'https://pwl.icu/notifications/unread/count?apiKey
 
 请求示例:
 ```bash
-curl --location --request GET 'https://pwl.icu/api/getNotifications?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS&type=point' \
+curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS&type=point' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -343,7 +384,7 @@ curl --location --request GET 'https://pwl.icu/api/getNotifications?apiKey=oXTQT
 |data|通知数据列表|`[ ... ]`|
 |- hasRead| 是否已读 | true |
 |- createTime | 创建时间 | Tue Dec 21 11:33:31 CST 2021 |
-|- description| 通知描述，格式为 HTML | `<a href=\"https://pwl.icu/member/PickerFinsh\" class=\"name-at\" aria-label=\"PickerFinsh\">PickerFinsh</a>  已通过你的邀请链接注册，感谢你对社区的贡献 <font style=\"color: red;\">♥</font>` |
+|- description| 通知描述，格式为 HTML | `<a href=\"https://fishpi.cn/member/PickerFinsh\" class=\"name-at\" aria-label=\"PickerFinsh\">PickerFinsh</a>  已通过你的邀请链接注册，感谢你对社区的贡献 <font style=\"color: red;\">♥</font>` |
 
 收到的回帖/回复(commented/reply)通知响应：
 | Key | 说明 | 示例 |
@@ -384,7 +425,7 @@ curl --location --request GET 'https://pwl.icu/api/getNotifications?apiKey=oXTQT
 |- articleTitle|文章标题|【社区维护日志】IP 黑名单列表|
 |- isComment|是否评论|false|
 |- articleTags|文章标签|摸鱼派,熊孩子|
-|- url|文章地址|https://pwl.icu/article/1639719358591|
+|- url|文章地址|https://fishpi.cn/article/1639719358591|
 |- articleType|文章类型|0|
 |- createTime|创建时间|Fri Dec 17 13:35:58 CST 2021|
 |- authorName|文章作者|adlered|
@@ -400,7 +441,7 @@ curl --location --request GET 'https://pwl.icu/api/getNotifications?apiKey=oXTQT
 |data|通知数据列表|`[ ... ]`|
 |- hasRead|是否已读|true|
 |- createTime|创建日期|Mon Dec 13 11:43:38 CST 2021"|
-|- description|通知描述|`<a href=\"https://pwl.icu/article/1639366979765\">【12.13 国家公祭日】南京大屠杀 - 勿忘历史，吾辈自强！</a>`"|
+|- description|通知描述|`<a href=\"https://fishpi.cn/article/1639366979765\">【12.13 国家公祭日】南京大屠杀 - 勿忘历史，吾辈自强！</a>`"|
 
 ### 批量已读类型的通知
 `GET /notifications/make-read/<type>?apiKey=<Key>`
@@ -426,7 +467,7 @@ curl --location --request GET 'https://pwl.icu/api/getNotifications?apiKey=oXTQT
 
 请求示例:
 ```bash
-curl --location --request GET 'https://pwl.icu/notifications/make-read/point?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/notifications/make-read/point?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -443,7 +484,7 @@ curl --location --request GET 'https://pwl.icu/notifications/make-read/point?api
 
 请求示例:
 ```bash
-curl --location --request GET 'https://pwl.icu/notifications/all-read?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
+curl --location --request GET 'https://fishpi.cn/notifications/all-read?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
@@ -470,13 +511,15 @@ curl --location --request GET 'https://pwl.icu/notifications/all-read?apiKey=oXT
 消息结构：
 |Key|所属类型|说明|示例|
 | --- | --- | --- |--|
-|type|all|消息类型<br>online(在线) / revoke(撤回) / msg(聊天) / redPacketStatus(红包领取)|msg|
+|type|all|消息类型<br>online(在线) / discussChanged(话题变更) / revoke(撤回) / msg(聊天) / redPacketStatus(红包领取)|msg|
 | 在线消息 |
 |onlineChatCnt|online|在线人数|35|
 |users|online|在线用户列表|`[ ... ]`|
-|- homePage| online | 用户首页| https://pwl.icu/member/... |
+|- homePage| online | 用户首页| https://fishpi.cn/member/... |
 |- userAvatarURL| online | 用户头像 | https://... |
 |- userName | online | 用户名 | adlered |
+| 话题变更 |
+|- newDiscuss|discussChanged|新的话题内容|今天上班吗|
 | 聊天消息 |
 |oId|msg|消息 Id | 1640074796395 |
 |time|msg|发布时间|2021-12-21 16:19:56|
@@ -524,11 +567,59 @@ curl --location --request GET 'https://pwl.icu/notifications/all-read?apiKey=oXT
 
 请求示例：
 ```bash
-curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1qeYe4tDx0No9uEpXA4rK2peczjZ40' \
+curl --location --request GET 'https://fishpi.cn/chat-room/more?page=1&apiKey=5r1qeYe4tDx0No9uEpXA4rK2peczjZ40' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
 响应：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|code|为 0 则密钥有效，为 -1 则密钥无效|0|
+|msg | 错误信息 | |
+| data | 消息列表| `[ ... ]` |
+|- oId| 消息 Id | 1640074796395 |
+|- time|发布时间|2021-12-21 16:19:56|
+|- userName  | 用户名 | adlered |
+|- userNickname | 昵称 | 陈辉 |
+|- userAvatarURL  | 用户头像 | https://... |
+|- sysMetal| 徽章列表, JSON **字符串**| `{ ... }` |
+|-- list | 徽章列表数据 | `[ ... ]` |
+|--- attr | 徽章数据，包含徽章图地址 `url`, 背景色 `backcolor`, 前景色 `fontcolor` | url=https://...&<br>backcolor=b91c22&<br>fontcolor=ffffff |
+|--- name | 徽章名称 | Operator |
+|--- description | 徽章描述 | 摸鱼派官方开发组成员|
+|--- data | 徽章数据 | 无 |
+|- content|消息内容，HTML 格式，如果是红包，则是 JSON |`<p>+1</p>` 或<br> `{...}` |
+|-- msg|红包祝福语|摸鱼者，事竟成！|
+|-- recivers|红包接收者用户名，专属红包有效|[ ... ]
+|-- msgType|固定 redPacket | redPacket
+|-- money|红包积分|32|
+|-- count|红包个数|2|
+|-- type|红包类型|random|
+|-- got|已领取个数|1|
+|-- who|已领取者信息| `[ ... ]` |
+| --- userName|用户名|dannio|
+| --- avatar|用户头像|https://...|
+| --- userMoney|领取到的积分|23|
+| --- time|领取时间|2021-12-21 16:26:43|
+
+
+`GET /chat-room/getMessage`
+
+通过聊天消息的oId获取前后消息，避免重复的问题，也可以用于快捷跳转至某条消息
+
+**注意：使用本接口必须已经登录或填写正确的apiKey，否则将返回401**
+
+请求：
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| oId | 消息oId | 1650609438569 |
+| size | 显示消息个数（不包括当mode为0时实际个数乘以2） | 25 |
+| mode | mode = 0 显示本条及之前、之后的消息<br />mode = 1 显示本条及之前的消息<br />mode = 2 显示本条及之后的消息 | 0 |
+
+响应：
+
 | Key | 说明 | 示例 |
 | --- | --- | --- |
 |code|为 0 则密钥有效，为 -1 则密钥无效|0|
@@ -573,13 +664,14 @@ curl --location --request GET 'https://pwl.icu/chat-room/more?page=1&apiKey=5r1q
 | - money| 红包包含积分，如果是平分红包，则是单个红包积分| 32 |
 | - count|红包个数| 2 |
 | - recivers|接收者用户名列表，专属红包有效| `[ ... ]` | 
-| - type|红包类型，random(拼手气红包), average(平分红包)，specify(专属红包)，heartbeat(心跳红包)|random|
+| - type|红包类型，random(拼手气红包), average(平分红包)，specify(专属红包)，heartbeat(心跳红包)，rockPaperScissors(猜拳红包)|random|
+| - gesture| 猜拳红包必须参数，表示发送者出招，0 = 石头，1 = 剪刀，2 = 布|0|
 
 > <sup>*</sup> 如果是发送红包，则需要发送 `[redpacket]{...}[/redpacket]`的格式
 
 请求示例：
 ```bash
-curl --location --request POST 'https://pwl.icu/chat-room/send' \
+curl --location --request POST 'https://fishpi.cn/chat-room/send' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -606,7 +698,7 @@ curl --location --request POST 'https://pwl.icu/chat-room/send' \
 
 请求示例：
 ```bash
-curl --location --request DELETE 'https://pwl.icu/chat-room/revoke/1640078407444' \
+curl --location --request DELETE 'https://fishpi.cn/chat-room/revoke/1640078407444' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -632,7 +724,7 @@ curl --location --request DELETE 'https://pwl.icu/chat-room/revoke/1640078407444
 
 请求示例：
 ```bash
-curl --location --request GET 'https://pwl.icu/cr/raw/1641290717190' \
+curl --location --request GET 'https://fishpi.cn/cr/raw/1641290717190' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 ```
 
@@ -653,10 +745,11 @@ curl --location --request GET 'https://pwl.icu/cr/raw/1641290717190' \
 | --- | --- | --- |
 |apiKey|通用密钥|oXTQTD4ljryXoIxa1lySgEl6aObrIhSS|
 |oId|消息 Id| 1640078407444 |
+|gesture|打开猜拳红包必须参数，表示领取者出招|0|
 
 请求示例：
 ```bash
-curl --location --request POST 'https://pwl.icu/chat-room/red-packet/open' \
+curl --location --request POST 'https://fishpi.cn/chat-room/red-packet/open' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -680,6 +773,7 @@ curl --location --request POST 'https://pwl.icu/chat-room/red-packet/open' \
 | - userAvatarURL|发送者头像|https://...|
 | - count|红包个数|2|
 | - got|已领取个数|2|
+| - gesture|猜拳红包参数，表示发送者出招，0 = 石头，1 = 剪刀，2 = 布|0|
 
 ### 获取表情包
 `POST /api/cloud/get`
@@ -694,7 +788,7 @@ curl --location --request POST 'https://pwl.icu/chat-room/red-packet/open' \
 
 请求示例：
 ```bash
-curl --location --request POST 'https://pwl.icu/api/cloud/get' \
+curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -725,7 +819,7 @@ curl --location --request POST 'https://pwl.icu/api/cloud/get' \
 
 请求示例：
 ```bash
-curl --location --request POST 'https://pwl.icu/api/cloud/get' \
+curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -760,7 +854,7 @@ curl --location --request POST 'https://pwl.icu/api/cloud/get' \
 
 请求示例：
 ```bash
-curl --location --request POST 'https://pwl.icu/upload' \
+curl --location --request POST 'https://fishpi.cn/upload' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --form 'file[]=@"/C:/your/file/full/path.jpg"'
 ```
@@ -778,24 +872,155 @@ curl --location --request POST 'https://pwl.icu/upload' \
 ## 帖子
 
 ### 发贴
+
 `POST /article`
 
 发表帖子
 
 请求：
+
+
 | Key | 说明 | 示例 |
 | --- | --- | --- |
-|apiKey|通用密钥|oXTQTD4ljryXoIxa1lySgEl6aObrIhSS|
-|其它参数|自行发帖抓包|
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| 其它参数 | 自行发帖抓包 | |
 
 ### 更新贴子
+
 `PUT /article/<id>`
 
 更新帖子
 
 请求：
+
 | Key | 说明 | 示例 |
 | --- | --- | --- |
 | id | 帖子 Id | ... |
-|apiKey|通用密钥|oXTQTD4ljryXoIxa1lySgEl6aObrIhSS|
-|其它参数|自行发帖抓包|
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| 其它参数 | 自行发帖抓包 | |
+
+### 帖子列表
+
+#### 特别注意
+
+所有帖子列表API都支持翻页功能，可在请求后加入参数 `?p=<Page>`自定义页码。
+
+所有帖子列表APi都支持定义每页显示文章数量，可在请求后加入参数 `?size=<Size>`自定义数量。
+
+#### 最近
+
+* 最近帖子列表：`GET /api/articles/recent`
+* 热门帖子列表：`GET /api/articles/recent/hot`
+* 点赞帖子列表：`GET /api/articles/recent/good`
+* 最近回复帖子列表：`GET /api/articles/recent/reply`
+
+#### 按标签
+
+* 列出帖子：`GET /api/articles/tag/<标签URI>`
+* 按热门程度列出帖子：`GET /api/articles/tag/<标签URI>/hot`
+* 按点赞列出帖子：`GET /api/articles/tag/<标签URI>/good`
+* 按最近回复列出帖子：`GET /api/articles/tag/<标签URI>/reply`
+* 按优选列出帖子：`GET /api/articles/tag/<标签URI>/perfect`
+
+注：标签URI可在点开某个标签的页面后，在URL中提取，例如[系统公告](https://fishpi.cn/tag/announcement)的标签URI为 `announcement`。
+
+#### 按领域
+
+* 列出帖子：`GET /api/articles/domain/<领域URI>`
+
+注：领域URI与标签URI同理，都可以从领域的页面的URL中提取。
+
+响应（帖子列表通用）：
+
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| code | 为 0 则密钥有效，为 -1 则密钥无效 | 0 |
+| msg | 错误消息 | |
+| articleTitle | 文章标题 | |
+| articleTags | 文章标签 | |
+| articlePreviewContent | 文章简略文 | |
+| articleAuthor | 文章作者信息 | |
+| | 还有很多参数，不难理解，大家先自己悟，我有时间再更新 | |
+
+### 获取指定帖子
+
+获取指定帖子的评论、文章内容、目录、点赞数量等。
+
+`GET /api/article/<文章ID>`
+
+响应：
+
+
+| Key             | 说明                                                 | 示例 |
+| ----------------- | ------------------------------------------------------ | ------ |
+| code            | 为 0 则密钥有效，为 -1 则密钥无效                    | 0    |
+| msg             | 错误消息                                             |      |
+| thankedCnt      | 文章感谢数量                                         |      |
+| articleToC      | 文章目录渲染后的HTML                                 |      |
+| articleComments | 文章的评论                                           |      |
+|                 | 还有很多参数，不难理解，大家先自己悟，我有时间再更新 |      |
+
+## 清风明月
+
+### 获取清风明月列表
+
+`GET /api/breezemoons`
+
+请求：
+
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| p | 页码（第几页） | 1 |
+| size | 每页显示多少条结果（可能由于部分用户权限设置，最终显示条数低于该结果，属正常情况） | 20 |
+
+
+请求示例：
+```bash
+curl --location --request GET 'https://fishpi.cn/api/breezemoons?p=1&size=20' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+```
+
+响应：
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| breezemoonAuthorName | 发布者用户名 | |
+| breezemoonUpdated | 最后更新时间 | |
+| oId | 清风明月ID | |
+| breezemoonCreated | 创建时间 | |
+| breezemoonAuthorThumbnailURL48 | 发布者头像URL | |
+| timeAgo | 发布时间 | |
+| breezemoonContent | 正文 | |
+| breezemoonCreateTime | 创建时间 | |
+| breezemoonCity | 发布城市（可能为空，请注意做判断） | |
+
+### 发布清风明月
+
+`POST /breezemoon`
+
+请求：
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| breezemoonContent | 清风明月正文 | helloworld |
+
+
+请求示例：
+```bash
+curl --location --request POST 'https://fishpi.cn/breezemoon' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+    "breezemoonContent":"helloworld"
+}'
+```
+
+响应：
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|code|为 0 则成功|0|
+|msg|错误消息||
