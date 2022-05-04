@@ -1158,9 +1158,9 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | oId| 评论ID |1638453675866 |
 | commentContent| 评论内容 | `<...>` |
 | commentStatus| 评论状态 |0 |
-| commenter |评论者用户信息||
-| paginationCurrentPageNum|  |1 |
-| commentAuthorName|  |imlinhanchao |
+| commenter |评论者用户信息| `{...}`|
+| paginationCurrentPageNum| 评论所在页码 |1 |
+| commentAuthorName| 评论者用户名 |imlinhanchao |
 | commentThankCnt| 感谢数 |3 |
 | commentBadCnt| 反对数 |0 |
 | rewarded| 是否感谢了 |false |
