@@ -285,7 +285,6 @@ curl --location --request GET 'https://fishpi.cn/api/activity/is-collected-liven
 
 | Key | 说明 | 示例 |
 | --- | --- | --- |
---------------------------------------------------------------------------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
 | reportDataId | 举报 Id | 1651126540998 |
 | reportDataType | 举报数据类型 | 0:文章,1:评论,2:用户,3:聊天消息 |
