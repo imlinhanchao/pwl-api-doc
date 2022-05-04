@@ -985,15 +985,17 @@ curl --location --request GET 'https://fishpi.cn/api/breezemoons?p=1&size=20' \
 
 | Key | 说明 | 示例 |
 | --- | --- | --- |
-| breezemoonAuthorName | 发布者用户名 | |
-| breezemoonUpdated | 最后更新时间 | |
-| oId | 清风明月ID | |
-| breezemoonCreated | 创建时间 | |
-| breezemoonAuthorThumbnailURL48 | 发布者头像URL | |
-| timeAgo | 发布时间 | |
-| breezemoonContent | 正文 | |
-| breezemoonCreateTime | 创建时间 | |
-| breezemoonCity | 发布城市（可能为空，请注意做判断） | |
+|code|为0则获取成功|0|
+|data|数据列表|`[ ... ]`|
+| - breezemoonAuthorName | 发布者用户名 | |
+| - breezemoonUpdated | 最后更新时间 | |
+| - oId | 清风明月ID | |
+| - breezemoonCreated | 创建时间 | |
+| - breezemoonAuthorThumbnailURL48 | 发布者头像URL | |
+| - timeAgo | 发布时间 | |
+| - breezemoonContent | 正文 | |
+| - breezemoonCreateTime | 创建时间 | |
+| - breezemoonCity | 发布城市（可能为空，请注意做判断） | |
 
 ### 发布清风明月
 
