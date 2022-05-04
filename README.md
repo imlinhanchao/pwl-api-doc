@@ -986,7 +986,7 @@ curl --location --request GET 'https://fishpi.cn/api/breezemoons?p=1&size=20' \
 | Key | 说明 | 示例 |
 | --- | --- | --- |
 |code|为0则获取成功|0|
-|data|数据列表|`[ ... ]`|
+|breezemoons|数据列表|`[ ... ]`|
 | - breezemoonAuthorName | 发布者用户名 | |
 | - breezemoonUpdated | 最后更新时间 | |
 | - oId | 清风明月ID | |
