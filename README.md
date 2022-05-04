@@ -7,7 +7,7 @@
 ## 鉴权
 摸鱼派社区 API 引入了 `apiKey` 的概念，对 API 的请求不需要提供 Cookie，只需要在参数中带上申请的 `apiKey` 即可。
 
-> 注意：凡是 POST 请求，请求体必须是 JSON 格式，例如：`{ "nameOrEmail": "","userPassword": "" }`
+> 注意：凡是 POST 请求，请求体必须是 JSON 格式，例如：`{ "nameOrEmail|  |"","userPassword|  |"" }`
 
 ### 获取 apiKey
 
@@ -28,9 +28,9 @@
 curl --location --request POST 'https://fishpi.cn/api/getKey' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --data-raw '{
-    "nameOrEmail": "username",
-    "userPassword": "e10adc3949ba59abbe56e057f20f883e",
-    "mfaCode": "123456"
+    "nameOrEmail|  |"username",
+    "userPassword|  |"e10adc3949ba59abbe56e057f20f883e",
+    "mfaCode|  |"123456"
 }'
 ```
 
@@ -152,7 +152,7 @@ curl --location --request POST 'https://fishpi.cn/users/names' \
 --header 'Content-Type: application/json' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --data-raw '{
-    "name": "ad"
+    "name|  |"ad"
 }'
 ```
 
@@ -187,7 +187,7 @@ curl --location --request GET 'https://fishpi.cn/users/emotions?apiKey=oXTQTD4lj
 |code|为0则密钥有效，为-1则密钥无效|0|
 |msg|错误信息||
 |data|表情列表|`[ ... ]`|
-|- &lt;emoji name>| Key 为 emoji 代码，值为对应 emoji | "smile": "😄" |
+|- &lt;emoji name>| Key 为 emoji 代码，值为对应 emoji | "smile|  |"😄" |
 
 ### 获取活跃度
 `GET /user/liveness?apiKey=<Key>`
@@ -298,7 +298,7 @@ curl --location --request POST 'https://fishpi.cn/report' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey": "oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+    "apiKey|  |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
     "reportDataId":"1651126540998",
     "reportDataType":3,
     "reportType":49,
@@ -674,8 +674,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/send' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey": "oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
-    "content": "..."
+    "apiKey|  |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+    "content|  |"..."
 }'
 ```
 
@@ -701,7 +701,7 @@ curl --location --request DELETE 'https://fishpi.cn/chat-room/revoke/16400784074
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey": "oXTQTD4ljryXoIxa1lySgEl6aObrIhSS"
+    "apiKey|  |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS"
 }'
 ```
 
@@ -752,8 +752,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/red-packet/open' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey": "5r1qeYe4tDx0No9uEpXA4rK2peczjZ40",
-    "oId": "1640075201124"
+    "apiKey|  |"5r1qeYe4tDx0No9uEpXA4rK2peczjZ40",
+    "oId|  |"1640075201124"
 }'
 ```
 
@@ -824,7 +824,7 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 --data-raw '{
     "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
     "gameId":"emojis",
-    "data": "[\"url1\", \"url2\"]"
+    "data|  |"[\"url1\", \"url2\"]"
 }'
 ```
 
@@ -946,19 +946,227 @@ curl --location --request POST 'https://fishpi.cn/upload' \
 
 获取指定帖子的评论、文章内容、目录、点赞数量等。
 
-`GET /api/article/<文章ID>`
+`GET /api/article/<文章ID>?apiKey=<Key>`
+
+请求:
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|apiKey|通用密钥|oXTQTD4ljryXoIxa1lySgEl6aObrIhSS|
+
+请求示例：
+```bash
+curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKey=oXTQTD4ljryXoIxa1lySgEl6aObrIhSS'
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
+```
 
 响应：
 
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| code | 为 0 则密钥有效，为 -1 则密钥无效 | 0 |
+| msg | 错误消息 | |
+| data | 帖子数据 | `{...}` |
+| - article | 帖子数据 | `{...}` |
+| -- articleTitleEmoj| 文章标题 |摸鱼派社区开放 API 使用文档 V2.0.0| 
+| -- articleTitleEmojUnicode| 文章标题 |摸鱼派社区开放 API 使用文档 V2.0.0| 
+| -- articleTitle| 文章标题 |摸鱼派社区开放 API 使用文档 V2.0.0| 
+| -- articleCreateTimeStr| 文章创建时间字符串 |2021-11-10 11:55:52| 
+| -- articleCreateTime | 文章创建时间 | Wed Nov 10 11:55:52 CST 2021 |
+| -- articlePermalink| 文章固定链接 |/article/1636516552191| 
+| -- timeAgo| 发布时间简写 |5 个月前| 
+| -- articleUpdateTimeStr| 最后更新时间 |2022-04-28 18:11:30| 
+| -- articleUpdateTime| 文章更新时间 |Thu Apr 28 18:11:30 CST 2022| 
+| -- articleLatestCmtTime| 文章最后修改时间 |Thu Apr 28 14:32:40 CST 2022|
+| -- articleType| 文章类型，0 = 帖子，1 = 机要，2 = 同城广播，3 = 思绪，5 = 问答 |0| 
+| -- articleStickRemains| 置顶序号 |0| 
+| -- articleStick| 是否置顶 |0| 
+| -- articleViewCount| 文章浏览数 |2176| 
+| -- articleThankCnt| 文章感谢数 |7| 
+| -- thankedCnt | 文章感谢数 | 7 |
+| -- articleCommentCount| 文章评论数 |27| 
+| -- articleBadCnt| 反对数 |0| 
+| -- articleGoodCnt| 赞同数 |3| 
+| -- articleWatchCnt| 关注数 |1| 
+| -- articleCollectCnt| 收藏数 |2| 
+| -- articleHeat| 文章点击数 |1| 
+| -- articleAnonymousView| 文章匿名浏览量 |0| 
+| -- articleViewCntDisplayFormat| 文章浏览量简写 |2.2K| 
+| -- articleShowInList| 是否在列表展示 |1| 
+| -- articlePerfect| 文章是否优选 |0| 
+| -- articleCommentable| 文章是否启用评论 |true| 
+| -- rewarded| 是否开启打赏 |false| 
+| -- rewardedCnt| 打赏人数 |0| 
+| -- articleRewardPoint| 文章打赏积分 |0|
+| -- articleQnAOfferPoint| 悬赏积分 |0| 
+| -- offered| 是否悬赏 |false| 
+| -- articleAnonymous| 是否匿名 |0| 
+| -- articleAuthorName| 作者用户名 |adlered|
+| -- isFollowing| 是否已关注 |false| 
+| -- isWatching| 是否关注 |false| 
+| -- isMyArticle| 是否是我的文章 |false| 
+| -- thanked| 是否感谢 |true| 
+| -- articleEditorType| 编辑器类型 |0| 
+| -- articleAudioURL| 文章音频地址 || 
+| -- articleToC | 文章目录渲染后的 HTML | `<ul>...</ul>` |
+| -- articlePreviewContent| 文章预览内容 | `...` | 
+| -- articleContent| 文章内容 HTML | `<...>` | 
+| -- articleThumbnailURL| 文章缩略图 ||
+| -- articleImg1URL| 第一张图片地址 || 
+| -- articleVote| ??? |0| 
+| -- articleRandomDouble| ??? |0.33495039072745036| 
+| -- articleAuthorIntro| 作者签名 |业余开源爱好者| 
+| -- articleCity| 发布地址 |北京| 
+| -- articleIP| 发布者 IP |114.249.118.167| 
+| -- articleAuthorId| 发布者Id |"1630399192600"| 
+| -- articleAuthorURL| 作者首页地址 |https://github.com/adlered| 
+| -- articleAuthor |作者用户信息| `{...}`|
+| -- articleAuthorThumbnailURL210| 作者头像缩略图 |`https:/...`| 
+| -- articleAuthorThumbnailURL48| 作者头像缩略图 |`https://...`| 
+| -- articleAuthorThumbnailURL20| 作者头像缩略图 |`https://...`| 
+| -- articlePushOrder| 推送 Email 推送顺序 |0| 
+| -- articleTags| 文章标签 |系统公告,摸鱼派,API| 
+| -- oId| 文章id |1636516552191| 
+| -- articleTagObjs |文章标签信息|`[...]`|
+| -- articleRewardContent| 打赏内容 |`<...>`| 
+| -- redditScore| reddit分数 |6283.477121254719| 
+| -- articleStatus| 文章状态， 0 = 正常，1 = 封禁，2 = 锁定 |0| 
+| -- pagination |分页信息|`{...}`|
+| --- paginationPageCount | 评论分页数 | 1 |
+| --- paginationPageNums | 建议分页页码 | `[ 1 ]` |
+| -- discussionViewable| 评论是否可见 |true|
+| -- articleRevisionCount| 文章修改次数 |37|
+| -- articleLatestCmterName| 文章最后评论者 |iwpz| 
+| -- cmtTimeAgo| 最后评论时间简写 |5 天前| 
+| -- articleLatestCmtTimeStr| 文章最后评论时间 |2022-04-28 14:32:40| 
+| -- articleComments | 文章的评论 | `[...]` |
+| -- articleNiceComments|文章最佳评论|`[...]`|
 
-| Key             | 说明                                                 | 示例 |
-| ----------------- | ------------------------------------------------------ | ------ |
-| code            | 为 0 则密钥有效，为 -1 则密钥无效                    | 0    |
-| msg             | 错误消息                                             |      |
-| thankedCnt      | 文章感谢数量                                         |      |
-| articleToC      | 文章目录渲染后的HTML                                 |      |
-| articleComments | 文章的评论                                           |      |
-|                 | 还有很多参数，不难理解，大家先自己悟，我有时间再更新 |      |
+**标签信息**
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+|oId| 标签 ID | 1630652039941| 
+|tagTitle| 标签名 | 有趣| 
+|tagDescription| 标签描述 | |
+|tagStatus| 标签状态， 0 = 正常，1 = 封禁 | 0| 
+|tagURI| 标签地址 | %e6%9c%89%e8%b6%a3| 
+|tagIconPath| icon 图地址 | `https://...`| 
+|tagCommentCount| 回帖计数 | 164| 
+|tagReferenceCount| 引用计数 | 15| 
+|tagFollowerCount| 关注数 | 477| 
+|tagBadCnt| 反对数 | 0| 
+|tagGoodCnt| 点赞数 | 0| 
+|tagLinkCount| ??? | 0| 
+|tagSeoTitle| 标签 SEO 标题 | 有趣| 
+|tagSeoDesc| 标签 SEO 描述 | |
+|tagSeoKeywords| 标签关键字 | 有趣| 
+|tagCSS| 标签自定义 CSS | | 
+|tagAd| 标签广告内容 | | 
+|tagShowSideAd| 是否展示广告，0 = 是，1 = 否 | 0| 
+|tagRandomDouble| ??? | 0.9355077930993895| 
+
+**评论与作者用户信息**
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| userOnlineFlag | 用户是否在线 | false |
+| onlineMinute | 用户在线时长 | 651 |
+| userPointStatus | 是否公开积分列表， 0 = 公开，1 = 不公开 | 0 |
+| userFollowerStatus | 是否公开关注者列表， 0 = 公开，1 = 不公开 | 0 |
+| userCommentStatus | 是否公开回帖列表， 0 = 公开，1 = 不公开 | 0 |
+| userOnlineStatus | 是否公开在线状态， 0 = 公开，1 = 不公开 | 0 |
+| userUAStatus | 是否公开 UA 信息， 0 = 公开，1 = 不公开 | 0 |
+| userWatchingArticleStatus | 是否公开关注帖子列表 | 0 |
+| userFollowingTagStatus | 是否公开关注标签列表 | 0 |
+| userJoinPointRank | 是否加入积分排行 | 0 |
+| userJoinUsedPointRank | 是否加入消费排行 | 0 |
+| userFollowingArticleStatus | 是否公开收藏帖子列表 | 0 |
+| userArticleStatus | 是否公开帖子列表 | 0 |
+| userBreezemoonStatus | 是否公开清风明月列表 | 0 |
+| userKeyboardShortcutsStatus | 是否启用键盘快捷键 | 1 |
+| chatRoomPictureStatus | 是否聊天室图片自动模糊 | 1 |
+| userForwardPageStatus | 是否启用站外链接跳转页面 | 1 |
+| userCommentViewMode | 回帖浏览模式 | 1 |
+| userGuideStep | ??? | 0 |
+| userCurrentCheckinStreakStart | 上次登录日期 | 20220413 |
+| userTags | 用户标签 | `...,...` |
+| sysMetal | 用户徽章 | `[...]` |
+| userTimezone | 用户时区 | Asia/Shanghai |
+| userURL | 用户个人主页 | `http://...` |
+| userIndexRedirectURL | 自定义首页跳转地址 |  |
+| userLatestArticleTime | 最近发帖时间 | 1646191348504 |
+| userTagCount | 标签计数 | 0 |
+| userNickname | 昵称 | 大白菜 |
+| userListViewMode | 回帖浏览模式， 0 = 传统， 1 = 实时 | 1 |
+| userLongestCheckinStreak | 最长连续签到 | 4 |
+| userAvatarType | 用户头像类型 | 2 |
+| userSubMailSendTime | ??? | 1645580075949 |
+| userUpdateTime | 用户最后更新时间 | 1650763072011 |
+| userSubMailStatus | ??? | 0 |
+| userLatestLoginTime | 用户最后登录时间 | 1650763072011 |
+| userAppRole | 应用角色 | 0 |
+| userAvatarViewMode | 头像查看模式 | 0 |
+| userStatus | 用户状态 | 0 |
+| userLongestCheckinStreakEnd | 用户上次最长连续签到日期 | 20220226 |
+| userLatestCmtTime | 上次回帖时间 | 1651195288787 |
+| userProvince | 用户省份 | 河北省 |
+| userCurrentCheckinStreak | ??? | 1 |
+| userNo | 用户编号 | 4611 |
+| userAvatarURL | 用户头像 | `https://...` |
+| userLanguage | 用户语言 | zh_CN |
+| userCurrentCheckinStreakEnd | 上次签到日期 | 20220413 |
+| userReplyWatchArticleStatus | 是否回帖后自动关注帖子 | 1 |
+| userCheckinTime | 用户上次签到时间 | 1649835297813 |
+| userUsedPoint | 用户消费积分 | 805 |
+| userPoint | 用户积分 | 5264 |
+| userCommentCount | 用户回帖数量 | 41 |
+| userIntro | 用户个性签名 |  |
+| userMobileSkin | 移动端主题 | mobile |
+| userListPageSize | 分页每页条目 | 60 |
+| oId | 用户 ID | 1645580042349 |
+| userName | 用户Id | 2516484465 |
+| userGeoStatus | 是否公开 IP 地理信息 | 0 |
+| userLongestCheckinStreakStart | 最长连续签到起始日 | 20220223 |
+| userSkin | 用户主题 | classic |
+| userNotifyStatus | 是否启用 Web 通知 | 0 |
+| userFollowingUserStatus | 公开关注用户列表 | 0 |
+| userArticleCount | 文章数 | 3 |
+| userRole | 用户角色 | 1630553360689 |
+
+**评论信息**
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| commentCreateTimeStr| 评论日期 |2021-12-02 22:01:15 |
+| commentAuthorId| 评论作者 Id |1630586509670 |
+| commentUA| 评论 UA |  |
+| commentScore| 评论分数 |0.549092369988321 |
+| commentCreateTime| 评论创建时间 |Thu Dec 02 22:01:15 CST 2021 |
+| commentAuthorURL| 评论作者 URL |https://my.hancel.org/about |
+| commentVote| ??? |-1 |
+| timeAgo| 评论日期简写 |4 个月前 |
+| commentOriginalCommentId| ??? | |
+| sysMetal| 徽章 |`[...]` |
+| commentGoodCnt| 点赞数 |2 |
+| commentVisible| 评论是否可见 |0 |
+| commentOnArticleId| 评论在文章中的 ID |1638373310692 |
+| rewardedCnt| 感谢数 |3 |
+| commentThankLabel| 感谢文案 |确定赠送 15 积分给 imlinhanchao 以表谢意？ |
+| commentSharpURL| 固定连接 |/article/1638373310692#1638453675866 |
+| commentAnonymous| 是否匿名 |0 |
+| commentIP| 评论 ID |58.152.85.25 |
+| commentReplyCnt| 回复数 |0 |
+| oId| 评论ID |1638453675866 |
+| commentContent| 评论内容 | `<...>` |
+| commentStatus| 评论状态 |0 |
+| commenter |评论者用户信息||
+| paginationCurrentPageNum|  |1 |
+| commentAuthorName|  |imlinhanchao |
+| commentThankCnt| 感谢数 |3 |
+| commentBadCnt| 反对数 |0 |
+| rewarded| 是否感谢了 |false |
+| commentAuthorThumbnailURL|  评论作者头像 |`https://...` |
+| commentAudioURL| 评论音频地址 | |
+| commentQnAOffered| 是否被采纳 |0|
 
 ## 清风明月
 
