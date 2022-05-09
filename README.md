@@ -1060,8 +1060,8 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | -- articleContent| 文章内容 HTML | `<...>` | 
 | -- articleThumbnailURL| 文章缩略图 ||
 | -- articleImg1URL| 第一张图片地址 || 
-| -- articleVote| ??? |0| 
-| -- articleRandomDouble| ??? |0.33495039072745036| 
+| -- articleVote| 文章点赞数 |0| 
+| -- articleRandomDouble| 文章随机数 |0.33495039072745036| 
 | -- articleAuthorIntro| 作者签名 |业余开源爱好者| 
 | -- articleCity| 发布地址 |北京| 
 | -- articleIP| 发布者 IP |114.249.118.167| 
@@ -1104,14 +1104,14 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 |tagFollowerCount| 关注数 | 477| 
 |tagBadCnt| 反对数 | 0| 
 |tagGoodCnt| 点赞数 | 0| 
-|tagLinkCount| ??? | 0| 
+|tagLinkCount| 标签相关链接计数 | 0| 
 |tagSeoTitle| 标签 SEO 标题 | 有趣| 
 |tagSeoDesc| 标签 SEO 描述 | |
 |tagSeoKeywords| 标签关键字 | 有趣| 
 |tagCSS| 标签自定义 CSS | | 
 |tagAd| 标签广告内容 | | 
 |tagShowSideAd| 是否展示广告，0 = 是，1 = 否 | 0| 
-|tagRandomDouble| ??? | 0.9355077930993895| 
+|tagRandomDouble| 标签随机数 | 0.9355077930993895| 
 
 **评论与作者用户信息**
 
@@ -1135,7 +1135,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | chatRoomPictureStatus | 是否聊天室图片自动模糊 | 1 |
 | userForwardPageStatus | 是否启用站外链接跳转页面 | 1 |
 | userCommentViewMode | 回帖浏览模式 | 1 |
-| userGuideStep | ??? | 0 |
+| userGuideStep | 用户完成新手指引步数 | 0 |
 | userCurrentCheckinStreakStart | 上次登录日期 | 20220413 |
 | userTags | 用户标签 | `...,...` |
 | sysMetal | 用户徽章 | `[...]` |
@@ -1148,9 +1148,9 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | userListViewMode | 回帖浏览模式， 0 = 传统， 1 = 实时 | 1 |
 | userLongestCheckinStreak | 最长连续签到 | 4 |
 | userAvatarType | 用户头像类型 | 2 |
-| userSubMailSendTime | ??? | 1645580075949 |
+| userSubMailSendTime | 用户确认邮件发送时间 | 1645580075949 |
 | userUpdateTime | 用户最后更新时间 | 1650763072011 |
-| userSubMailStatus | ??? | 0 |
+| userSubMailStatus | 用户邮箱绑定状态 | 0 |
 | userLatestLoginTime | 用户最后登录时间 | 1650763072011 |
 | userAppRole | 应用角色 | 0 |
 | userAvatarViewMode | 头像查看模式 | 0 |
@@ -1158,7 +1158,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | userLongestCheckinStreakEnd | 用户上次最长连续签到日期 | 20220226 |
 | userLatestCmtTime | 上次回帖时间 | 1651195288787 |
 | userProvince | 用户省份 | 河北省 |
-| userCurrentCheckinStreak | ??? | 1 |
+| userCurrentCheckinStreak | 用户当前连续签到计数 | 1 |
 | userNo | 用户编号 | 4611 |
 | userAvatarURL | 用户头像 | `https://...` |
 | userLanguage | 用户语言 | zh_CN |
@@ -1190,9 +1190,9 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | commentScore| 评论分数 |0.549092369988321 |
 | commentCreateTime| 评论创建时间 |Thu Dec 02 22:01:15 CST 2021 |
 | commentAuthorURL| 评论作者 URL |https://my.hancel.org/about |
-| commentVote| ??? |-1 |
+| commentVote| 评论点赞数 |-1 |
 | timeAgo| 评论日期简写 |4 个月前 |
-| commentOriginalCommentId| ??? | |
+| commentOriginalCommentId| 评论原始oId | |
 | sysMetal| 徽章 |`[...]` |
 | commentGoodCnt| 点赞数 |2 |
 | commentVisible| 评论是否可见 |0 |
