@@ -89,6 +89,54 @@ curl --location --request GET 'https://fishpi.cn/api/user?apiKey=oXTQTD4ljryXoIx
 
 ><sup>*</sup> 注意：若密钥无效，无 `data` 项目
 
+### 注册用户
+
+以下关于注册用户接口的内容我以提供注册思路为导向进行编写，方便大家对接。
+
+**第一步** 获取一个图形验证码，要求用户识别并填写，带入到第二步的请求中
+
+获取图形验证码可访问 `GET /captcha`
+
+**第二步** 向摸鱼派请求获取短信验证码
+
+`POST /register`
+
+请求:
+
+| Key        | 说明                           | 示例        |
+| ------------ | -------------------------------- | ------------- |
+| userName   | 用户名                         | adlered     |
+| userPhone  | 手机号                         | 13261327290 |
+| invitecode | 邀请码（选填，无则留空）       | 000000      |
+| captcha    | 第一步的验证码（大小写不敏感） | abcd        |
+
+**第三步** 验证短信验证码是否正确
+
+`GET /verify?code=<code>`
+
+请求：
+
+| Key  | 说明       | 示例   |
+| ------ | ------------ | -------- |
+| code | 短信验证码 | 123456 |
+
+返回结果后请验证返回JSON中code的值是否为0，如为0则验证码正确，**并记录下返回的userId**。
+
+**第四步** 设定密码和邮箱
+
+`POST /register2`
+
+**请注意！请将密码在本地MD5加密后再放到userPassword中！不接受明文密码！**
+
+| Key          | 说明                                   | 示例                             |
+| -------------- | ---------------------------------------- | ---------------------------------- |
+| userAppRole  | 角色（0为黑客，1为画家）               | 0                                |
+| userPassword | 使用 MD5 加密后的密码 *                | e10adc3949ba59abbe56e057f20f883e |
+| userId       | 请填写第三步返回的userId               | 1652062402334                    |
+| r            | 邀请人的用户名（选填，无邀请人则留空） | csfwff                           |
+
+code返回0则注册成功！
+
 ## 通用
 
 ### 查询成员信息
@@ -1012,8 +1060,8 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | -- articleContent| 文章内容 HTML | `<...>` | 
 | -- articleThumbnailURL| 文章缩略图 ||
 | -- articleImg1URL| 第一张图片地址 || 
-| -- articleVote| ??? |0| 
-| -- articleRandomDouble| ??? |0.33495039072745036| 
+| -- articleVote| 文章点赞数 |0| 
+| -- articleRandomDouble| 文章随机数 |0.33495039072745036| 
 | -- articleAuthorIntro| 作者签名 |业余开源爱好者| 
 | -- articleCity| 发布地址 |北京| 
 | -- articleIP| 发布者 IP |114.249.118.167| 
@@ -1056,14 +1104,14 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 |tagFollowerCount| 关注数 | 477| 
 |tagBadCnt| 反对数 | 0| 
 |tagGoodCnt| 点赞数 | 0| 
-|tagLinkCount| ??? | 0| 
+|tagLinkCount| 标签相关链接计数 | 0| 
 |tagSeoTitle| 标签 SEO 标题 | 有趣| 
 |tagSeoDesc| 标签 SEO 描述 | |
 |tagSeoKeywords| 标签关键字 | 有趣| 
 |tagCSS| 标签自定义 CSS | | 
 |tagAd| 标签广告内容 | | 
 |tagShowSideAd| 是否展示广告，0 = 是，1 = 否 | 0| 
-|tagRandomDouble| ??? | 0.9355077930993895| 
+|tagRandomDouble| 标签随机数 | 0.9355077930993895| 
 
 **评论与作者用户信息**
 
@@ -1087,7 +1135,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | chatRoomPictureStatus | 是否聊天室图片自动模糊 | 1 |
 | userForwardPageStatus | 是否启用站外链接跳转页面 | 1 |
 | userCommentViewMode | 回帖浏览模式 | 1 |
-| userGuideStep | ??? | 0 |
+| userGuideStep | 用户完成新手指引步数 | 0 |
 | userCurrentCheckinStreakStart | 上次登录日期 | 20220413 |
 | userTags | 用户标签 | `...,...` |
 | sysMetal | 用户徽章 | `[...]` |
@@ -1100,9 +1148,9 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | userListViewMode | 回帖浏览模式， 0 = 传统， 1 = 实时 | 1 |
 | userLongestCheckinStreak | 最长连续签到 | 4 |
 | userAvatarType | 用户头像类型 | 2 |
-| userSubMailSendTime | ??? | 1645580075949 |
+| userSubMailSendTime | 用户确认邮件发送时间 | 1645580075949 |
 | userUpdateTime | 用户最后更新时间 | 1650763072011 |
-| userSubMailStatus | ??? | 0 |
+| userSubMailStatus | 用户邮箱绑定状态 | 0 |
 | userLatestLoginTime | 用户最后登录时间 | 1650763072011 |
 | userAppRole | 应用角色 | 0 |
 | userAvatarViewMode | 头像查看模式 | 0 |
@@ -1110,7 +1158,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | userLongestCheckinStreakEnd | 用户上次最长连续签到日期 | 20220226 |
 | userLatestCmtTime | 上次回帖时间 | 1651195288787 |
 | userProvince | 用户省份 | 河北省 |
-| userCurrentCheckinStreak | ??? | 1 |
+| userCurrentCheckinStreak | 用户当前连续签到计数 | 1 |
 | userNo | 用户编号 | 4611 |
 | userAvatarURL | 用户头像 | `https://...` |
 | userLanguage | 用户语言 | zh_CN |
@@ -1142,9 +1190,9 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | commentScore| 评论分数 |0.549092369988321 |
 | commentCreateTime| 评论创建时间 |Thu Dec 02 22:01:15 CST 2021 |
 | commentAuthorURL| 评论作者 URL |https://my.hancel.org/about |
-| commentVote| ??? |-1 |
+| commentVote| 评论点赞数 |-1 |
 | timeAgo| 评论日期简写 |4 个月前 |
-| commentOriginalCommentId| ??? | |
+| commentOriginalCommentId| 评论原始oId | |
 | sysMetal| 徽章 |`[...]` |
 | commentGoodCnt| 点赞数 |2 |
 | commentVisible| 评论是否可见 |0 |
