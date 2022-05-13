@@ -1285,3 +1285,84 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 | --- | --- | --- |
 |code|为 0 则成功|0|
 |msg|错误消息||
+
+## 私信
+
+### 发送私信
+
+`POST /idle-talk/send`
+
+请求：
+
+
+| Key      | 说明             | 示例                             |
+| ---------- | ------------------ | ---------------------------------- |
+| apiKey   | 通用密钥         | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| userName | 接收人用户名     | csfwff                           |
+| theme    | 私信主题         | 给墨夏的一封信                   |
+| content  | 私信Markdown正文 | Hello World!                     |
+
+### 获取私信
+
+`GET /api/idle-talk`
+
+请求：
+
+
+| Key    | 说明     | 示例                             |
+| -------- | ---------- | ---------------------------------- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+
+响应：
+
+
+| Key              | 说明         | 示例 |
+| ------------------ | -------------- | ------ |
+| code             | 为 0 则成功  | 0    |
+| data: meReceived | 我未读的私信 |      |
+| data: meSent     | 我发送的私信 |      |
+
+### 将私信标记为已读
+
+`GET /idle-talk/seek`
+
+请求：
+
+
+| Key    | 说明                          | 示例                             |
+| -------- | ------------------------------- | ---------------------------------- |
+| apiKey | 通用密钥                      | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| mapId  | 在获取私信中获得的消息mapId值 | 1652241268994                    |
+
+响应：
+
+
+| Key  | 说明        | 示例         |
+| ------ | ------------- | -------------- |
+| code | 为 0 则成功 | 0            |
+| data | 私信内容    | Hello World! |
+
+### 撤回私信
+
+`GET /idle-talk/revoke`
+
+请求：
+
+
+| Key    | 说明                          | 示例                             |
+| -------- | ------------------------------- | ---------------------------------- |
+| apiKey | 通用密钥                      | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| mapId  | 在获取私信中获得的消息mapId值 | 1652241268994                    |
+
+### 私信实时频道
+
+`WSS /idle-talk-channel?apiKey=`
+
+如果你想实时接收私信消息，可以连接到私信的实时WebSocket频道
+
+请求：
+
+
+| Key    | 说明     | 示例                             |
+| -------- | ---------- | ---------------------------------- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
