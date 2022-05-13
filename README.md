@@ -439,15 +439,15 @@ curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXT
 |code|为0则密钥有效，为-1则密钥无效|0|
 |msg|错误信息||
 |data|通知数据列表|`[ ... ]`|
-|- hasRead|是否已读|true,
-|- commentAuthorName|回帖作者|Tocker",
-|- commentAuthorThumbnailURL|回帖作者头像缩略图|https://...,
-|- commentCreateTime|回帖时间|Sun Dec 19 09:57:03 CST 2021",
-|- commentSharpURL|回帖地址|/article/1637143985245?p=1&m=1#1639879022994",
-|- commentContent|回帖内容，内容为 HTML|`<p>牛蛙牛蛙</p>`",
-|- commentArticleType|回帖的文章类型|0,
-|- commentArticleTitle|回帖文章标题|摸鱼派聊天室应用",
-|- commentArticlePerfect|是否精选的文章|1
+|- hasRead|是否已读|true|
+|- commentAuthorName|回帖作者|Tocker|
+|- commentAuthorThumbnailURL|回帖作者头像缩略图|https://...|
+|- commentCreateTime|回帖时间|Sun Dec 19 09:57:03 CST 2021|
+|- commentSharpURL|回帖地址|/article/1637143985245?p=1&m=1#1639879022994|
+|- commentContent|回帖内容，内容为 HTML|`<p>牛蛙牛蛙</p>`|
+|- commentArticleType|回帖的文章类型|0|
+|- commentArticleTitle|回帖文章标题|摸鱼派聊天室应用|
+|- commentArticlePerfect|是否精选的文章|1|
 
 收到的 @ (at) 通知响应：
 | Key | 说明 | 示例 |
