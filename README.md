@@ -107,7 +107,7 @@ curl --location --request GET 'https://fishpi.cn/api/user?apiKey=oXTQTD4ljryXoIx
 | ------------ | -------------------------------- | ------------- |
 | userName   | 用户名                         | adlered     |
 | userPhone  | 手机号                         | 13261327290 |
-| invitecode | 邀请码（选填，无则留空）       | 000000      |
+| invitecode | 邀请码（选填，无则留空，必须提供让用户填写邀请人的输入框，如果用户留空，可以将作者作为邀请人，但如果用户主动填写了邀请人，则必须按用户输入请求）       | 000000      |
 | captcha    | 第一步的验证码（大小写不敏感） | abcd        |
 
 **第三步** 验证短信验证码是否正确
@@ -328,6 +328,7 @@ curl --location --request GET 'https://fishpi.cn/api/activity/is-collected-liven
 `POST /report`
 
 举报内容接口
+**请注意！** 该接口为复用接口，请确保 `Content-Type` 为 `application/x-www-form-urlencoded` 而非JSON，否则将无法请求成功
 
 请求：
 
