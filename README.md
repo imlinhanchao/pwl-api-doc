@@ -1,20 +1,20 @@
 # 摸鱼派 API 文档
 
 ## 注意事项
-- 请一定要在请求时带上UA，推荐使用Chrome的UA，空UA将返回500状态码
+- 请一定要在请求时带上 UA，推荐使用 Chrome 的 UA，空 UA 将返回 500 状态码
 - 对单个接口的访问频率必须控制在最低1次/30秒，否则IP可能进入小黑屋（WebSocket、发送消息接口除外）
 
-## 摸鱼派API的ApiFox团队
-为了方便大家调试API，我们开通了摸鱼派API的ApiFox团队，团队内集合了摸鱼派API的集合样例（欢迎补全），如想加入请在评论区回复你的ApiFox注册邮箱，我们将进行邀请。
+## 摸鱼派API的 ApiFox 团队
+为了方便大家调试 API，我们开通了摸鱼派 API 的 ApiFox 团队，团队内集合了摸鱼派 API 的集合样例（欢迎补全），如想加入请在评论区回复你的 ApiFox 注册邮箱，我们将进行邀请。
 
 ## 鉴权
 摸鱼派社区 API 引入了 `apiKey` 的概念，对 API 的请求不需要提供 Cookie，只需要在参数中带上申请的 `apiKey` 即可。
 
-> 注意：凡是 POST 请求，请求体必须是 JSON 格式，例如：`{ "nameOrEmail|  |"","userPassword|  |"" }`
+> 注意：凡是 POST 请求，请求体必须是 JSON 格式，例如：`{ "nameOrEmail| |"","userPassword| |"" }`
 
 ### 获取 apiKey
 
-`POST` `/api/getKey`  
+`POST` `/api/getKey` 
 
 用于 API 获取摸鱼派的通用密钥，`Key` 即身份，`Key` 长期有效，如果服务器重启，则需要重新获取，建议配合 `/api/user` 接口定期检测 `Key` 是否有效。
 
@@ -31,9 +31,9 @@
 curl --location --request POST 'https://fishpi.cn/api/getKey' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --data-raw '{
-    "nameOrEmail|  |"username",
-    "userPassword|  |"e10adc3949ba59abbe56e057f20f883e",
-    "mfaCode|  |"123456"
+ "nameOrEmail| |"username",
+ "userPassword| |"e10adc3949ba59abbe56e057f20f883e",
+ "mfaCode| |"123456"
 }'
 ```
 
@@ -106,12 +106,12 @@ curl --location --request GET 'https://fishpi.cn/api/user?apiKey=oXTQTD4ljryXoIx
 
 请求:
 
-| Key        | 说明                           | 示例        |
-| ------------ | -------------------------------- | ------------- |
-| userName   | 用户名                         | adlered     |
-| userPhone  | 手机号                         | 13261327290 |
-| invitecode | 邀请码（选填，无则留空，必须提供让用户填写邀请人的输入框，如果用户留空，可以将作者作为邀请人，但如果用户主动填写了邀请人，则必须按用户输入请求）       | 000000      |
-| captcha    | 第一步的验证码（大小写不敏感） | abcd        |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| userName | 用户名 | adlered |
+| userPhone | 手机号 | 13261327290 |
+| invitecode | 邀请码（选填，无则留空，必须提供让用户填写邀请人的输入框，如果用户留空，可以将作者作为邀请人，但如果用户主动填写了邀请人，则必须按用户输入请求） | 000000 |
+| captcha | 第一步的验证码（大小写不敏感） | abcd |
 
 **第三步** 验证短信验证码是否正确
 
@@ -119,26 +119,26 @@ curl --location --request GET 'https://fishpi.cn/api/user?apiKey=oXTQTD4ljryXoIx
 
 请求：
 
-| Key  | 说明       | 示例   |
-| ------ | ------------ | -------- |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
 | code | 短信验证码 | 123456 |
 
-返回结果后请验证返回JSON中code的值是否为0，如为0则验证码正确，**并记录下返回的userId**。
+返回结果后请验证返回 JSON 中 code 的值是否为 0，如为 0 则验证码正确，**并记录下返回的userId**。
 
 **第四步** 设定密码和邮箱
 
-`POST /register2`
+`POST /register2?r=<r>`
 
-**请注意！请将密码在本地MD5加密后再放到userPassword中！不接受明文密码！**
+**请注意！请将密码在本地MD5加密后再放到 userPassword 中！不接受明文密码！**
 
-| Key          | 说明                                   | 示例                             |
-| -------------- | ---------------------------------------- | ---------------------------------- |
-| userAppRole  | 角色（0为黑客，1为画家）               | 0                                |
-| userPassword | 使用 MD5 加密后的密码 *                | e10adc3949ba59abbe56e057f20f883e |
-| userId       | 请填写第三步返回的userId               | 1652062402334                    |
-| r            | 邀请人的用户名（选填，无邀请人则留空） | csfwff                           |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| userAppRole | 角色（0为黑客，1为画家） | 0 |
+| userPassword | 使用 MD5 加密后的密码 * | e10adc3949ba59abbe56e057f20f883e |
+| userId | 请填写第三步返回的userId | 1652062402334 |
+| r | 邀请人的用户名（选填，无邀请人则留空） | csfwff |
 
-code返回0则注册成功！
+code 返回 0 则注册成功！
 
 ## 通用
 
@@ -203,7 +203,7 @@ curl --location --request POST 'https://fishpi.cn/users/names' \
 --header 'Content-Type: application/json' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --data-raw '{
-    "name|  |"ad"
+ "name| |"ad"
 }'
 ```
 
@@ -238,7 +238,7 @@ curl --location --request GET 'https://fishpi.cn/users/emotions?apiKey=oXTQTD4lj
 |code|为0则密钥有效，为-1则密钥无效|0|
 |msg|错误信息||
 |data|表情列表|`[ ... ]`|
-|- &lt;emoji name>| Key 为 emoji 代码，值为对应 emoji | "smile|  |"😄" |
+|- &lt;emoji name>| Key 为 emoji 代码，值为对应 emoji | "smile| |"😄" |
 
 ### 获取活跃度
 `GET /user/liveness?apiKey=<Key>`
@@ -350,11 +350,11 @@ curl --location --request POST 'https://fishpi.cn/report' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey|  |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
-    "reportDataId":"1651126540998",
-    "reportDataType":3,
-    "reportType":49,
-    "reportMemo":""，
+ "apiKey| |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+ "reportDataId":"1651126540998",
+ "reportDataType":3,
+ "reportType":49,
+ "reportMemo":""，
 }'
 ```
 
@@ -435,7 +435,7 @@ curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXT
 |data|通知数据列表|`[ ... ]`|
 |- hasRead| 是否已读 | true |
 |- createTime | 创建时间 | Tue Dec 21 11:33:31 CST 2021 |
-|- description| 通知描述，格式为 HTML | `<a href=\"https://fishpi.cn/member/PickerFinsh\" class=\"name-at\" aria-label=\"PickerFinsh\">PickerFinsh</a>  已通过你的邀请链接注册，感谢你对社区的贡献 <font style=\"color: red;\">♥</font>` |
+|- description| 通知描述，格式为 HTML | `<a href=\"https://fishpi.cn/member/PickerFinsh\" class=\"name-at\" aria-label=\"PickerFinsh\">PickerFinsh</a> 已通过你的邀请链接注册，感谢你对社区的贡献 <font style=\"color: red;\">♥</font>` |
 
 收到的回帖/回复(commented/reply)通知响应：
 | Key | 说明 | 示例 |
@@ -630,9 +630,9 @@ curl --location --request GET 'https://fishpi.cn/chat-room/more?page=1&apiKey=5r
 | data | 消息列表| `[ ... ]` |
 |- oId| 消息 Id | 1640074796395 |
 |- time|发布时间|2021-12-21 16:19:56|
-|- userName  | 用户名 | adlered |
+|- userName | 用户名 | adlered |
 |- userNickname | 昵称 | 陈辉 |
-|- userAvatarURL  | 用户头像 | https://... |
+|- userAvatarURL | 用户头像 | https://... |
 |- sysMetal| 徽章列表, JSON **字符串**| `{ ... }` |
 |-- list | 徽章列表数据 | `[ ... ]` |
 |--- attr | 徽章数据，包含徽章图地址 `url`, 背景色 `backcolor`, 前景色 `fontcolor` | url=https://...&<br>backcolor=b91c22&<br>fontcolor=ffffff |
@@ -678,9 +678,9 @@ curl --location --request GET 'https://fishpi.cn/chat-room/more?page=1&apiKey=5r
 | data | 消息列表| `[ ... ]` |
 |- oId| 消息 Id | 1640074796395 |
 |- time|发布时间|2021-12-21 16:19:56|
-|- userName  | 用户名 | adlered |
+|- userName | 用户名 | adlered |
 |- userNickname | 昵称 | 陈辉 |
-|- userAvatarURL  | 用户头像 | https://... |
+|- userAvatarURL | 用户头像 | https://... |
 |- sysMetal| 徽章列表, JSON **字符串**| `{ ... }` |
 |-- list | 徽章列表数据 | `[ ... ]` |
 |--- attr | 徽章数据，包含徽章图地址 `url`, 背景色 `backcolor`, 前景色 `fontcolor` | url=https://...&<br>backcolor=b91c22&<br>fontcolor=ffffff |
@@ -726,8 +726,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/send' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey|  |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
-    "content|  |"..."
+ "apiKey| |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+ "content| |"..."
 }'
 ```
 
@@ -753,7 +753,7 @@ curl --location --request DELETE 'https://fishpi.cn/chat-room/revoke/16400784074
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey|  |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS"
+ "apiKey| |"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS"
 }'
 ```
 
@@ -804,8 +804,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/red-packet/open' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey|  |"5r1qeYe4tDx0No9uEpXA4rK2peczjZ40",
-    "oId|  |"1640075201124"
+ "apiKey| |"5r1qeYe4tDx0No9uEpXA4rK2peczjZ40",
+ "oId| |"1640075201124"
 }'
 ```
 
@@ -843,8 +843,8 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
-    "gameId":"emojis"
+ "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+ "gameId":"emojis"
 }'
 ```
 
@@ -874,9 +874,9 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
-    "gameId":"emojis",
-    "data|  |"[\"url1\", \"url2\"]"
+ "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+ "gameId":"emojis",
+ "data| |"[\"url1\", \"url2\"]"
 }'
 ```
 
@@ -894,9 +894,9 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 上传图片或文件
 
 #### 限制
-- **大小**：<=5M，  
-- **文件格式**：zip, rar, 7z, tar, gzip, bz2, jar, jpg, jpeg,png, gif, webp, webm, bmp, mp3, mp4, wav, mov, weba  
-- **请求类型**：multipart/form-data  
+- **大小**：<=5M， 
+- **文件格式**：zip, rar, 7z, tar, gzip, bz2, jar, jpg, jpeg,png, gif, webp, webm, bmp, mp3, mp4, wav, mov, weba 
+- **请求类型**：multipart/form-data 
 
 请求：
 | Key | 说明 | 示例 |
@@ -1145,7 +1145,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | sysMetal | 用户徽章 | `[...]` |
 | userTimezone | 用户时区 | Asia/Shanghai |
 | userURL | 用户个人主页 | `http://...` |
-| userIndexRedirectURL | 自定义首页跳转地址 |  |
+| userIndexRedirectURL | 自定义首页跳转地址 | |
 | userLatestArticleTime | 最近发帖时间 | 1646191348504 |
 | userTagCount | 标签计数 | 0 |
 | userNickname | 昵称 | 大白菜 |
@@ -1172,7 +1172,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | userUsedPoint | 用户消费积分 | 805 |
 | userPoint | 用户积分 | 5264 |
 | userCommentCount | 用户回帖数量 | 41 |
-| userIntro | 用户个性签名 |  |
+| userIntro | 用户个性签名 | |
 | userMobileSkin | 移动端主题 | mobile |
 | userListPageSize | 分页每页条目 | 60 |
 | oId | 用户 ID | 1645580042349 |
@@ -1190,7 +1190,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | --- | --- | --- |
 | commentCreateTimeStr| 评论日期 |2021-12-02 22:01:15 |
 | commentAuthorId| 评论作者 Id |1630586509670 |
-| commentUA| 评论 UA |  |
+| commentUA| 评论 UA | |
 | commentScore| 评论分数 |0.549092369988321 |
 | commentCreateTime| 评论创建时间 |Thu Dec 02 22:01:15 CST 2021 |
 | commentAuthorURL| 评论作者 URL |https://my.hancel.org/about |
@@ -1216,7 +1216,7 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | commentThankCnt| 感谢数 |3 |
 | commentBadCnt| 反对数 |0 |
 | rewarded| 是否感谢了 |false |
-| commentAuthorThumbnailURL|  评论作者头像 |`https://...` |
+| commentAuthorThumbnailURL| 评论作者头像 |`https://...` |
 | commentAudioURL| 评论音频地址 | |
 | commentQnAOffered| 是否被采纳 |0|
 
@@ -1275,8 +1275,8 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
-    "breezemoonContent":"helloworld"
+ "apiKey":"oXTQTD4ljryXoIxa1lySgEl6aObrIhSS",
+ "breezemoonContent":"helloworld"
 }'
 ```
 
@@ -1295,12 +1295,12 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 请求：
 
 
-| Key      | 说明             | 示例                             |
-| ---------- | ------------------ | ---------------------------------- |
-| apiKey   | 通用密钥         | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
-| userName | 接收人用户名     | csfwff                           |
-| theme    | 私信主题         | 给墨夏的一封信                   |
-| content  | 私信Markdown正文 | Hello World!                     |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| userName | 接收人用户名 | csfwff |
+| theme | 私信主题 | 给墨夏的一封信 |
+| content | 私信Markdown正文 | Hello World! |
 
 ### 获取私信
 
@@ -1309,18 +1309,18 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 请求：
 
 
-| Key    | 说明     | 示例                             |
-| -------- | ---------- | ---------------------------------- |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
 
 响应：
 
 
-| Key              | 说明         | 示例 |
-| ------------------ | -------------- | ------ |
-| code             | 为 0 则成功  | 0    |
-| data: meReceived | 我未读的私信 |      |
-| data: meSent     | 我发送的私信 |      |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| code | 为 0 则成功 | 0 |
+| data: meReceived | 我未读的私信 | |
+| data: meSent | 我发送的私信 | |
 
 ### 将私信标记为已读
 
@@ -1329,18 +1329,18 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 请求：
 
 
-| Key    | 说明                          | 示例                             |
-| -------- | ------------------------------- | ---------------------------------- |
-| apiKey | 通用密钥                      | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
-| mapId  | 在获取私信中获得的消息mapId值 | 1652241268994                    |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| mapId | 在获取私信中获得的消息mapId值 | 1652241268994 |
 
 响应：
 
 
-| Key  | 说明        | 示例         |
-| ------ | ------------- | -------------- |
-| code | 为 0 则成功 | 0            |
-| data | 私信内容    | Hello World! |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| code | 为 0 则成功 | 0 |
+| data | 私信内容 | Hello World! |
 
 ### 撤回私信
 
@@ -1349,10 +1349,10 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 请求：
 
 
-| Key    | 说明                          | 示例                             |
-| -------- | ------------------------------- | ---------------------------------- |
-| apiKey | 通用密钥                      | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
-| mapId  | 在获取私信中获得的消息mapId值 | 1652241268994                    |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| mapId | 在获取私信中获得的消息mapId值 | 1652241268994 |
 
 ### 私信实时频道
 
@@ -1363,6 +1363,6 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 请求：
 
 
-| Key    | 说明     | 示例                             |
-| -------- | ---------- | ---------------------------------- |
+| Key | 说明 | 示例 |
+| --- | --- | --- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
