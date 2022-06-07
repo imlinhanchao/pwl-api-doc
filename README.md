@@ -1220,6 +1220,22 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | commentAudioURL| 评论音频地址 | |
 | commentQnAOffered| 是否被采纳 |0|
 
+### 评论/回复
+
+`POST /comment`
+
+请求：
+
+| Key | 说明 | 示例 |
+| --- | --- | --- |
+| apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
+| articleId | 文章的oId | 1645002736006 |
+| commentAnonymous | 是否匿名评论，是填写true，否填写false | false |
+| commentVisible | 是否仅楼主可见，是填写true，否填写false | false |
+| commentContent | 评论原文（Markdown格式） | hello world |
+| commentOriginalCommentId | （选填）如果是回复某个评论，传递此参数并填写值为要回复的评论的oId | 1646216549324 |
+ 
+
 ## 清风明月
 
 ### 获取清风明月列表
