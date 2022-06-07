@@ -43,7 +43,8 @@ curl --location --request POST 'https://fishpi.cn/api/getKey' \
 
 > <sup>*</sup> 注意：这里不支持直接传递明文，必须是32位小写MD5加密后的密码
 
-| 响应： |                                |                                  |
+响应：
+
 | Key | 说明 | 示例 |
 | -------- | -------------------------------- | ---------------------------------- |
 | Key    | API 通用密钥，用于用户身份识别 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -56,7 +57,8 @@ curl --location --request POST 'https://fishpi.cn/api/getKey' \
 
 通过指定的 API Key 查询用户信息（可以用来定期验证 API Key 是否有效）
 
-| 请求:  |          |                                  |
+请求:
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -68,7 +70,8 @@ curl --location --request GET 'https://fishpi.cn/api/user?apiKey=oXTQTD4ljryXoIx
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 ```
 
-| 响应：               |                                                                              |                                                           |
+响应：
+
 | Key | 说明 | 示例 |
 | ---------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | code                 | 为0则密钥有效，为-1则密钥无效                                                | 0                                                         |
@@ -154,7 +157,8 @@ code 返回 0 则注册成功！
 
 查询某个成员的信息
 
-| 请求:    |                      |                                  |
+请求:
+
 | Key | 说明 | 示例 |
 | ---------- | ---------------------- | ---------------------------------- |
 | username | 用户名               | taozhiyu                         |
@@ -169,7 +173,8 @@ curl --location --request GET 'https://fishpi.cn/user/taozhiyu?apiKey=oXTQTD4ljr
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36' \
 ```
 
-| 响应：             |                                                                              |                                                           |
+响应：
+
 | Key | 说明 | 示例 |
 | -------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | oId                | Id                                                                           | 1630512345670                                             |
@@ -201,7 +206,8 @@ curl --location --request GET 'https://fishpi.cn/user/taozhiyu?apiKey=oXTQTD4ljr
 
 通过现有的字符串推断完整的用户名（列表）
 
-| 请求: |                |    |
+请求:
+
 | Key | 说明 | 示例 |
 | ------- | ---------------- | ---- |
 | name  | 不完整的用户名 | ad |
@@ -217,7 +223,8 @@ curl --location --request POST 'https://fishpi.cn/users/names' \
 }'
 ```
 
-| 响应：          |                               |             |
+响应：
+
 | Key | 说明 | 示例 |
 | ----------------- | ------------------------------- | ------------- |
 | code            | 为0则密钥有效，为-1则密钥无效 | 0           |
@@ -232,7 +239,8 @@ curl --location --request POST 'https://fishpi.cn/users/names' \
 
 获取用户常用表情
 
-| 请求:  |          |                                  |
+请求:
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -244,7 +252,8 @@ curl --location --request GET 'https://fishpi.cn/users/emotions?apiKey=oXTQTD4lj
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 响应：                 |                                   |              |
+响应：
+
 | Key | 说明 | 示例 |
 | ------------------------ | ----------------------------------- | -------------- |
 | code                   | 为0则密钥有效，为-1则密钥无效     | 0            |
@@ -261,7 +270,8 @@ curl --location --request GET 'https://fishpi.cn/users/emotions?apiKey=oXTQTD4lj
 > **警告⚠️**:
 > 本接口负载较大，请至少将请求间隔延长至30秒，建议每次循环取 (30,60] 秒的随机数，如间隔小于30秒，登录状态会被直接注销！
 
-| 请求： |          |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -273,7 +283,8 @@ curl --location --request GET 'https://fishpi.cn/user/liveness?apiKey=oXTQTD4ljr
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 响应：   |        |       |
+响应：
+
 | Key | 说明 | 示例 |
 | ---------- | -------- | ------- |
 | liveness | 活跃度 | 80.20 |
@@ -284,7 +295,8 @@ curl --location --request GET 'https://fishpi.cn/user/liveness?apiKey=oXTQTD4ljr
 
 获取用户是否签到
 
-| 请求:  |          |                                  |
+请求: 
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -296,7 +308,8 @@ curl --location --request GET 'https://fishpi.cn/user/checkedIn?apiKey=oXTQTD4lj
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 响应：    |          |      |
+响应：
+
 | Key | 说明 | 示例 |
 | ----------- | ---------- | ------ |
 | checkedIn | 是否签到 | true |
@@ -307,7 +320,8 @@ curl --location --request GET 'https://fishpi.cn/user/checkedIn?apiKey=oXTQTD4lj
 
 领取昨日活跃奖励
 
-| 请求示例: |          |                                  |
+请求示例: 
+
 | Key | 说明 | 示例 |
 | ----------- | ---------- | ---------------------------------- |
 | apiKey    | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -319,7 +333,8 @@ curl --location --request GET 'https://fishpi.cn/activity/yesterday-liveness-rew
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 响应： |                             |     |
+响应：
+
 | Key | 说明 | 示例 |
 | -------- | ----------------------------- | ----- |
 | sum    | 领取到的积分，-1 表示已领取 | 300 |
@@ -330,7 +345,8 @@ curl --location --request GET 'https://fishpi.cn/activity/yesterday-liveness-rew
 
 查询昨日活跃奖励是否已被领取
 
-| 请求示例: |          |                                  |
+请求示例:
+
 | Key | 说明 | 示例 |
 | ----------- | ---------- | ---------------------------------- |
 | apiKey    | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -342,7 +358,8 @@ curl --location --request GET 'https://fishpi.cn/api/activity/is-collected-liven
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 响应：                             |                 |      |
+响应：
+
 | Key | 说明 | 示例 |
 | ------------------------------------ | ----------------- | ------ |
 | isCollectedYesterdayLivenessReward | true 表示已领取 | true |
@@ -394,7 +411,8 @@ curl --location --request POST 'https://fishpi.cn/report' \
 
 获取用户未阅读的通知计数
 
-| 请求： |          |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -406,7 +424,8 @@ curl --location --request GET 'https://fishpi.cn/notifications/unread/count?apiK
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 响应：                           |                                   |   |
+响应：
+
 | Key | 说明 | 示例 |
 | ---------------------------------- | ----------------------------------- | --- |
 | code                             | 为 0 则密钥有效，为 -1 则密钥无效 | 0 |
@@ -427,14 +446,16 @@ curl --location --request GET 'https://fishpi.cn/notifications/unread/count?apiK
 
 获取详细通知列表
 
-| 请求： |                   |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ------------------- | ---------------------------------- |
 | apiKey | 通用密钥          | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
 | type   | 要获取的通知类型  | point                            |
 | p      | 页数可选，默认为1 | 1                                |
 
-| 通知类型：   |            |
+通知类型：
+
 | Type | 说明 |
 | -------------- | ------------ |
 | point        | 积分       |
@@ -452,7 +473,8 @@ curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXT
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 积分(point)通知响应： |                               |                                                                                                                                                                                                    |
+积分(point)通知响应：
+
 | Key | 说明 | 示例 |
 | ----------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | code                  | 为0则密钥有效，为-1则密钥无效 | 0                                                                                                                                                                                                  |
@@ -462,7 +484,8 @@ curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXT
 | - createTime          | 创建时间                      | Tue Dec 21 11:33:31 CST 2021                                                                                                                                                                       |
 | - description         | 通知描述，格式为 HTML         | `<a href=\"https://fishpi.cn/member/PickerFinsh\" class=\"name-at\" aria-label=\"PickerFinsh\">PickerFinsh</a> 已通过你的邀请链接注册，感谢你对社区的贡献 <font style=\"color: red;\">♥</font>` |
 
-| 收到的回帖/回复(commented/reply)通知响应： |                               |                                              |
+收到的回帖/回复(commented/reply)通知响应：
+
 | Key | 说明 | 示例 |
 | -------------------------------------------- | ------------------------------- | ---------------------------------------------- |
 | code                                       | 为0则密钥有效，为-1则密钥无效 | 0                                            |
@@ -478,7 +501,8 @@ curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXT
 | - commentArticleTitle                      | 回帖文章标题                  | 摸鱼派聊天室应用                             |
 | - commentArticlePerfect                    | 是否精选的文章                | 1                                            |
 
-| 收到的 @ (at) 通知响应： |                               |                                                               |
+收到的 @ (at) 通知响应：
+
 | Key | 说明 | 示例 |
 | -------------------------- | ------------------------------- | --------------------------------------------------------------- |
 | code                     | 为0则密钥有效，为-1则密钥无效 | 0                                                             |
@@ -491,7 +515,8 @@ curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXT
 | - createTime"            | 创建时间                      | Mon Dec 20 10:00:56 CST 2021",                                |
 | - content                | @ 的内容                      | @imlinhanchao 大佬一直在线 还可以看直播"                      |
 
-| 我关注的(following) 通知响应： |                               |                                         |
+我关注的(following) 通知响应：
+
 | Key | 说明 | 示例 |
 | -------------------------------- | ------------------------------- | ----------------------------------------- |
 | code                           | 为0则密钥有效，为-1则密钥无效 | 0                                       |
@@ -525,7 +550,8 @@ curl --location --request GET 'https://fishpi.cn/api/getNotifications?apiKey=oXT
 
 将制定类型的通知标记为已读
 
-| 请求： |                  |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ------------------ | ---------------------------------- |
 | apiKey | 通用密钥         | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -555,7 +581,8 @@ curl --location --request GET 'https://fishpi.cn/notifications/make-read/point?a
 
 将全部通知标记为已读
 
-| 请求： |                  |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ------------------ | ---------------------------------- |
 | apiKey | 通用密钥         | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -576,12 +603,14 @@ curl --location --request GET 'https://fishpi.cn/notifications/all-read?apiKey=o
 
 聊天室接收消息的WebSocket
 
-| 请求： |          |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
 
-| 事件处理： |                                            |
+事件处理：
+
 | Event | 说明 |
 | ------------ | -------------------------------------------- |
 | open       | 连接打开，定时每 3 分钟发送 `-hb-`       |
@@ -589,7 +618,8 @@ curl --location --request GET 'https://fishpi.cn/notifications/all-read?apiKey=o
 | error      | 连接出错，需重新连接                       |
 | message    | 收到消息，内容为 JSON 字符串，需自行序列号 |
 
-| 消息结构：                |                 |                                                                                                            |                                                           |
+消息结构：
+
 | Key | 所属类型 | 说明 | 示例 |
 | --------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | type                      | all             | 消息类型<br>online(在线) / discussChanged(话题变更) / revoke(撤回) / msg(聊天) / redPacketStatus(红包领取) | msg                                                       |
@@ -640,8 +670,10 @@ curl --location --request GET 'https://fishpi.cn/notifications/all-read?apiKey=o
 
 `GET /chat-room/more?apiKey=<Key>&page=<page>`
 
-| 获取更多聊天信息 |          |                                  |
-| 请求： |  |  |
+获取更多聊天信息
+
+请求：
+
 | Key | 说明 | 示例 |
 | ------------------ | ---------- | ---------------------------------- |
 | apiKey           | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -654,7 +686,8 @@ curl --location --request GET 'https://fishpi.cn/chat-room/more?page=1&apiKey=5r
 --header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 ```
 
-| 响应：          |                                                                              |                                                           |
+响应：
+
 | Key | 说明 | 示例 |
 | ----------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | code            | 为 0 则密钥有效，为 -1 则密钥无效                                            | 0                                                         |
@@ -738,7 +771,8 @@ curl --location --request GET 'https://fishpi.cn/chat-room/more?page=1&apiKey=5r
 
 发送聊天室消息
 
-| 请求：     |                                                                                                                      |                                                         |
+请求：
+
 | Key | 说明 | 示例 |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | apiKey     | 通用密钥                                                                                                             | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS                        |
@@ -764,7 +798,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/send' \
 }'
 ```
 
-| 响应： |                                   |   |
+响应：
+
 | Key | 说明 | 示例 |
 | -------- | ----------------------------------- | --- |
 | code   | 为 0 则密钥有效，为 -1 则密钥无效 | 0 |
@@ -775,7 +810,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/send' \
 
 撤回聊天室消息（限制用户每24小时一次，管理员无限次）
 
-| 请求： |          |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -792,7 +828,8 @@ curl --location --request DELETE 'https://fishpi.cn/chat-room/revoke/16400784074
 }'
 ```
 
-| 响应： |                                   |            |
+响应：
+
 | Key | 说明 | 示例 |
 | -------- | ----------------------------------- | ------------ |
 | code   | 为 0 则密钥有效，为 -1 则密钥无效 | 0          |
@@ -804,7 +841,8 @@ curl --location --request DELETE 'https://fishpi.cn/chat-room/revoke/16400784074
 
 查看聊天室消息的 Markdown 原文，引用时使用。
 
-| 请求： |         |               |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | --------- | --------------- |
 | oId    | 消息 Id | 1641290717190 |
@@ -830,7 +868,8 @@ curl --location --request GET 'https://fishpi.cn/cr/raw/1641290717190' \
 
 拆开聊天室红包
 
-| 请求：  |                                      |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | --------- | -------------------------------------- | ---------------------------------- |
 | apiKey  | 通用密钥                             | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -849,7 +888,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/red-packet/open' \
 }'
 ```
 
-| 响应：          |                                                          |                     |
+响应：
+
 | Key | 说明 | 示例 |
 | ----------------- | ---------------------------------------------------------- | --------------------- |
 | recivers        | 红包接收者用户名列表，专属红包有效                       | `[ ... ]`         |
@@ -872,7 +912,8 @@ curl --location --request POST 'https://fishpi.cn/chat-room/red-packet/open' \
 
 从云获取指定 Key 内容，这里用于获取用户表情包
 
-| 请求： |          |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -890,7 +931,8 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 }'
 ```
 
-| 响应： |                                                  |                      |
+响应：
+
 | Key | 说明 | 示例 |
 | -------- | -------------------------------------------------- | ---------------------- |
 | code   | 为 0 则密钥有效，为 -1 则密钥无效                | 0                    |
@@ -902,7 +944,8 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 
 同步指定 Key 数据到云，这里用于同步用户表情包
 
-| 请求：          |                                                  |                                  |
+请求：
+
 | Key | 说明 | 示例 |
 | ----------------- | -------------------------------------------------- | ---------------------------------- |
 | apiKey          | 通用密钥                                         | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -924,7 +967,8 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 }'
 ```
 
-| 响应： |                                   |   |
+响应：
+
 | Key | 说明 | 示例 |
 | -------- | ----------------------------------- | --- |
 | code   | 为 0 则密钥有效，为 -1 则密钥无效 | 0 |
@@ -944,7 +988,8 @@ curl --location --request POST 'https://fishpi.cn/api/cloud/get' \
 * **文件格式**：zip, rar, 7z, tar, gzip, bz2, jar, jpg, jpeg,png, gif, webp, webm, bmp, mp3, mp4, wav, mov, weba
 * **请求类型**：multipart/form-data
 
-| 请求： |      |  |
+请求：
+
 | Key | 说明 | 示例 |
 | -------- | ------ | -- |
 | file[] | 文件 |  |
@@ -957,7 +1002,8 @@ curl --location --request POST 'https://fishpi.cn/upload' \
 --form 'file[]=@"/C:/your/file/full/path.jpg"'
 ```
 
-| 响应：          |                                   |                      |
+响应：
+
 | Key | 说明 | 示例 |
 | ----------------- | ----------------------------------- | ---------------------- |
 | code            | 为 0 则密钥有效，为 -1 则密钥无效 | 0                    |
@@ -1045,7 +1091,8 @@ curl --location --request POST 'https://fishpi.cn/upload' \
 
 `GET /api/article/<文章ID>?apiKey=<Key>`
 
-| 请求:  |          |                                  |
+请求:
+
 | Key | 说明 | 示例 |
 | -------- | ---------- | ---------------------------------- |
 | apiKey | 通用密钥 | oXTQTD4ljryXoIxa1lySgEl6aObrIhSS |
@@ -1231,7 +1278,8 @@ curl --location --request GET 'https://fishpi.cn/api/article/1636516552191?apiKe
 | userArticleCount              | 文章数                                    | 3               |
 | userRole                      | 用户角色                                  | 1630553360689   |
 
-| **评论信息**        |                   |                                            |
+**评论信息** 
+
 | Key | 说明 | 示例 |
 | --------------------------- | ------------------- | -------------------------------------------- |
 | commentCreateTimeStr      | 评论日期          | 2021-12-02 22:01:15                        |
@@ -1445,7 +1493,8 @@ curl --location --request POST 'https://fishpi.cn/breezemoon' \
 }'
 ```
 
-| 响应： |             |   |
+响应：
+
 | Key | 说明 | 示例 |
 | -------- | ------------- | --- |
 | code   | 为 0 则成功 | 0 |
